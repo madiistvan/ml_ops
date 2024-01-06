@@ -12,4 +12,4 @@ We are going to use a pre-trained model from [Pytorch Image Models](https://gith
 The dataset we are going to further train the model comes from Kaggle competition [Dog Breed Identification](https://www.kaggle.com/competitions/dog-breed-identification/overview). It contains a total of 10 222 training images and 10 357 test images of 120 different types of breeds. We may change the size of these original sets based on how our experiments go.
 
 ## What models do you expect to use?
-We take a pre-trained model from [Pytorch Image Models](https://github.com/huggingface/pytorch-image-models) called TBD and we are going to further train it on our dataset. 
+We take a pre-trained model from [Pytorch Image Models](https://github.com/huggingface/pytorch-image-models) called [Mobilenet V3](https://pprp.github.io/timm/models/mobilenet-v3/) and we are going to further train it on our dataset. 
