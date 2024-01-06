@@ -24,6 +24,7 @@ def get_labels(labels):
     return ids, torch.stack(label_tensor)
 
 
+
 def process_data():
     # Load the data and one-hot encode breed
     data_dir = "data/raw/dog-breed-identification"
