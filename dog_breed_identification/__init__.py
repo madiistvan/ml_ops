@@ -1,0 +1,2 @@
+from dog_breed_identification.models.model import MyNeuralNet
+from dog_breed_identification.predict_model import predict
