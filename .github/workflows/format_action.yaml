@@ -1,0 +1,17 @@
+name: Continuous Integration
+
+on:
+  pull_request:
+  push:
+    branches:
+      - '*'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+      with:
+        ref: ${{ github.head_ref }}
+    - uses: creyD/action_autopep8@v3.1
