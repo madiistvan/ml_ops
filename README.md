@@ -1,63 +1,15 @@
-# dog_breed_identification
+# Dog Breed Identification
 
-Identify dogs based on images
+![Dog](https://media.discordapp.net/attachments/791010369010794526/1193157948747296768/IMG_0513.jpg?ex=65abb1ee&is=65993cee&hm=7dc556eccff4a7421dc074a8f6e1b1e29218c189a54e79ab298286cb62981e05&=&format=webp&width=507&height=676)
 
-## Project structure
+## Overall goal of the project
+The goal of the project is to set up a controlled, organized, scalable, reproducible and deployable machine learning project with various tools taught in the [Machine Learning Operations (02476)](https://skaftenicki.github.io/dtu_mlops/) course. The actual problem that this project is aimed at solving with deep learning is identifying dog breeds based on images with the help of a pre-trained model from [Pytorch Image Models](https://github.com/huggingface/pytorch-image-models). 
 
-The directory structure of the project looks like this:
+## What framework are you going to use and you do you intend to include the framework into your project?
+We are going to use a pre-trained model from [Pytorch Image Models](https://github.com/huggingface/pytorch-image-models).
 
-```txt
+## What data are you going to run on (initially, may change)?
+The dataset we are going to further train the model comes from Kaggle competition [Dog Breed Identification](https://www.kaggle.com/competitions/dog-breed-identification/overview). It contains a total of 10 222 training images and 10 357 test images of 120 different types of breeds. We may change the size of these original sets based on how our experiments go.
 
-├── Makefile             <- Makefile with convenience commands like `make data` or `make train`
-├── README.md            <- The top-level README for developers using this project.
-├── data
-│   ├── processed        <- The final, canonical data sets for modeling.
-│   └── raw              <- The original, immutable data dump.
-│
-├── docs                 <- Documentation folder
-│   │
-│   ├── index.md         <- Homepage for your documentation
-│   │
-│   ├── mkdocs.yml       <- Configuration file for mkdocs
-│   │
-│   └── source/          <- Source directory for documentation files
-│
-├── models               <- Trained and serialized models, model predictions, or model summaries
-│
-├── notebooks            <- Jupyter notebooks.
-│
-├── pyproject.toml       <- Project configuration file
-│
-├── reports              <- Generated analysis as HTML, PDF, LaTeX, etc.
-│   └── figures          <- Generated graphics and figures to be used in reporting
-│
-├── requirements.txt     <- The requirements file for reproducing the analysis environment
-|
-├── requirements_dev.txt <- The requirements file for reproducing the analysis environment
-│
-├── tests                <- Test files
-│
-├── dog_breed_identification  <- Source code for use in this project.
-│   │
-│   ├── __init__.py      <- Makes folder a Python module
-│   │
-│   ├── data             <- Scripts to download or generate data
-│   │   ├── __init__.py
-│   │   └── make_dataset.py
-│   │
-│   ├── models           <- model implementations, training script and prediction script
-│   │   ├── __init__.py
-│   │   ├── model.py
-│   │
-│   ├── visualization    <- Scripts to create exploratory and results oriented visualizations
-│   │   ├── __init__.py
-│   │   └── visualize.py
-│   ├── train_model.py   <- script for training the model
-│   └── predict_model.py <- script for predicting from a model
-│
-└── LICENSE              <- Open-source license if one is chosen
-```
-
-Created using [mlops_template](https://github.com/SkafteNicki/mlops_template),
-a [cookiecutter template](https://github.com/cookiecutter/cookiecutter) for getting
-started with Machine Learning Operations (MLOps).
+## What models do you expect to use?
+We take a pre-trained model from [Pytorch Image Models](https://github.com/huggingface/pytorch-image-models) called TBD and we are going to further train it on our dataset. 
