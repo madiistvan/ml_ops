@@ -54,7 +54,7 @@ def process_data():
     train_images = torch.stack(train_images)
     test_images = torch.stack(test_images)
 
-    "Split into train and validate"
+    # Split into train and validate
     sss = StratifiedShuffleSplit(n_splits=1, test_size=0.2, random_state=0)
     train_index, val_index = next(sss.split(train_images, train_labels))
 

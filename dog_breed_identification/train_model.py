@@ -70,5 +70,6 @@ def evaluate():
             100 * correct / total))
 
 
-train()
-evaluate()
+if __name__ == '__main__':
+    train()
+    evaluate()
