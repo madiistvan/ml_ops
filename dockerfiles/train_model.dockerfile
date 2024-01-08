@@ -13,5 +13,7 @@ COPY data/ data/
 WORKDIR /
 RUN pip install -r requirements.txt --no-cache-dir
 RUN pip install . --no-deps --no-cache-dir
+# For some reason numpy is not installed, for now install manually
+RUN pip install numpy
 
 ENTRYPOINT ["python", "-u", "dog_breed_identification/train_model.py"]
