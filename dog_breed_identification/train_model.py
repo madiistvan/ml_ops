@@ -71,7 +71,6 @@ def evaluate():
             _, predicted = torch.max(preds.data, 1)
             total += y.size(0)
 
-
             predicted_index = torch.argmax(preds.data, 1)
             correct_index = torch.argmax(y, 1)
             correct += (predicted_index == correct_index).sum().item()
