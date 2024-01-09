@@ -2,6 +2,11 @@ import torch
 from torch.utils.data import DataLoader
 import timm
 import hydra
+import wandb
+import pandas as pd
+
+# Init wandb
+wandb.init(project="dog-breed-identification")
 
 # Get config
 hydra.initialize(config_path="config", version_base=None)
@@ -46,6 +51,7 @@ def train():
             if batch_idx % 1 == 0:
                 print(
                     f"Batch Index: {batch_idx} Loss: {loss.item() / batch_size}")
+                wandb.log({"Train loss:": loss.item() / batch_size})
 
             optimizer.zero_grad()
             loss.backward()
@@ -76,6 +82,17 @@ def evaluate():
             correct += (predicted_index == correct_index).sum().item()
         print('Accuracy of the model on the validation set: {} %'.format(
             100 * correct / total))
+
+    labels = pd.read_csv('data/processed/breeds.csv', names=["id", "breed"])
+    for i in range(5):
+        correct_breed = labels[labels["id"] ==
+                               correct_index[i].item()]["breed"].values[0]
+        predicted_breed = labels[labels["id"] ==
+                                 predicted_index[i].item()]["breed"].values[0]
+
+        wandb.log({
+            "Examples": wandb.Image(x[i], caption=f"Predicted: {predicted_breed}, Correct: {correct_breed}"),
+        })
 
 
 if __name__ == '__main__':
