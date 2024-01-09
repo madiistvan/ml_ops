@@ -2,7 +2,7 @@ import torch
 
 
 class MyNeuralNet(torch.nn.Module):
-    """ Basic neural network class. 
+    """Basic neural network class.
 
     Args:
         in_features: number of input features
