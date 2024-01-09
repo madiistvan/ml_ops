@@ -1,12 +1,17 @@
 import torch
 from torch.utils.data import DataLoader
 import timm
+import hydra
+
+# Get config
+hydra.initialize(config_path="config", version_base=None)
+hparams = hydra.compose(config_name="train_config")
 
 # Hyperparameters
-num_epochs = 1
-learnig_rate = 0.003
+num_epochs = hparams.epochs
+learnig_rate = hparams.lr
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-batch_size = 64
+batch_size = hparams.batch_size
 dataset_path = 'data/processed'
 
 # Load data
@@ -51,7 +56,7 @@ def train():
               )
 
     print("Training complete, saving model...")
-    torch.save(model.state_dict(), 'models/model.pth')
+    torch.save(model.state_dict(), f'models/{hparams.name}.pth')
 
 
 def evaluate():
@@ -65,7 +70,10 @@ def evaluate():
             preds = model(x)
             _, predicted = torch.max(preds.data, 1)
             total += y.size(0)
-            correct += (predicted == y).sum().item()
+
+            predicted_index = torch.argmax(preds.data, 1)
+            correct_index = torch.argmax(y, 1)
+            correct += (predicted_index == correct_index).sum().item()
         print('Accuracy of the model on the validation set: {} %'.format(
             100 * correct / total))
 
