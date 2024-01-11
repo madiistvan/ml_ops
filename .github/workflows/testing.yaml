@@ -21,6 +21,11 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
+      - id: 'auth'
+        name: 'Authenticate to Google Cloud'
+        uses: 'google-github-actions/auth@v1'
+        with:
+          credentials_json: ${{ secrets.DATA_BUCKET_SERVICE_ACCOUNT }}
       - uses: iterative/setup-dvc@v1
       - name: Get data
         run: dvc pull
