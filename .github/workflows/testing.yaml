@@ -29,7 +29,11 @@ jobs:
       - uses: iterative/setup-dvc@v1
       - name: Get data
         run: |
-          gcloud auth activate-service-account --key-file=$GOOGLE_APPLICATION_CREDENTIALS
+          echo $BUCKET_SERVICE_ACCOUNT
+          gcloud auth activate-service-account --key-file=$BUCKET_SERVICE_ACCOUNT
           dvc pull
+        env:
+          BUCKET_SERVICE_ACCOUNT: $GOOGLE_APPLICATION_CREDENTIALS
+
       - name: Run tests
         run: pytest tests/
