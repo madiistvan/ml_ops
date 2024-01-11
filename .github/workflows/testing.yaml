@@ -25,6 +25,7 @@ jobs:
       - name: Install dependencies
         run: |
           pwd
+          ls
           python -m pip install --upgrade pip
           pip install -r requirements.txt
           export GCSFUSE_REPO=gcsfuse-`lsb_release -c -s`
@@ -32,6 +33,6 @@ jobs:
           curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
           sudo apt-get update
           sudo apt-get install gcsfuse
-          gcsfuse dtu-mlops-data-bucket /data/processed
+          gcsfuse dtu-mlops-data-bucket /gs
       - name: Run tests
         run: pytest tests/
