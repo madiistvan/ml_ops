@@ -13,3 +13,13 @@ The dataset we are going to further train the model comes from Kaggle competitio
 
 ## What models do you expect to use?
 We take a pre-trained model from [Pytorch Image Models](https://github.com/huggingface/pytorch-image-models) called [Mobilenet V3](https://pprp.github.io/timm/models/mobilenet-v3/) and we are going to further train it on our dataset. 
+
+# API
+
+The endpoint to make predictions with our latest model is available here:
+
+```
+https://dog-breed-identification-api-k3daan6qya-ew.a.run.app/predict
+```
+
+The endpoint expects a POST request with an `imagefiles` attribute containing the images to predict. 
