@@ -1,0 +1,5 @@
+name: exp1
+epochs: 10
+lr: 0.001
+batch_size: 64
+data_path: 'data/processed'
