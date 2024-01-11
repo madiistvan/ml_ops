@@ -29,7 +29,7 @@ jobs:
       - uses: iterative/setup-dvc@v1
       - name: Get data
         run: |
-          gcloud -h
+          gsutil ls
           echo $GOOGLE_APPLICATION_CREDENTIALS
           gcloud auth activate-service-account --key-file=$GOOGLE_APPLICATION_CREDENTIALS
           dvc pull
