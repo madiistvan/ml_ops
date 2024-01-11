@@ -15,6 +15,7 @@ jobs:
         with:
           service_account_key: ${{ secrets.DATA_BUCKET_SERVICE_ACCOUNT }}
           export_default_credentials: true
+      - uses: iterative/setup-dvc@v1
       - name: DVC Pull
         run: |
           dvc pull
