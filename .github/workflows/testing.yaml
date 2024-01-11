@@ -26,7 +26,7 @@ jobs:
         uses: 'google-github-actions/auth@v1'
         with:
           credentials_json: ${{ secrets.DATA_BUCKET_SERVICE_ACCOUNT }}
-      - uses: iterative/setup-dvc@v1
+      - uses: iterative/setup-dvc@v2
       - name: Get data
         run: | 
           cat $GOOGLE_APPLICATION_CREDENTIALS
