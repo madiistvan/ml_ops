@@ -67,13 +67,6 @@ def process_data():
 
     print(f"Shape of train images: {train_images.shape}")
 
-    # Save example image
-    # img = Image.fromarray(train_images[0].permute(1,2,0).numpy())
-    # img.save(f'data/examples/{train_ids[0]}_{labels.iloc[0]["breed"]}.jpg')
-
-    # img = Image.fromarray(train_images[100].permute(1,2,0).numpy())
-    # img.save(f'data/examples/{train_ids[100]}_{labels.iloc[100]["breed"]}.jpg')
-
     breeds_list = list(one_hot.columns)
     breeds_df = pd.DataFrame(breeds_list)
     breeds_df.to_csv('data/processed/breeds.csv', index=True, header=False)

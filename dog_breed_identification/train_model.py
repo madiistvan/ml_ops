@@ -4,6 +4,7 @@ import timm
 import hydra
 import wandb
 import pandas as pd
+from dog_breed_identification.models.model import Model
 
 # Init wandb
 wandb.init(project="dog-breed-identification")
@@ -28,8 +29,7 @@ train_loader = DataLoader(train, batch_size=batch_size, shuffle=True)
 val_loader = DataLoader(val, batch_size=batch_size, shuffle=True)
 
 # Load model
-model = timm.create_model('mobilenetv3_large_100',
-                          pretrained=True, num_classes=120)
+model = Model()
 model.to(device)
 model.train()
 
@@ -74,7 +74,6 @@ def evaluate():
             x = x.to(device).float()
             y = y.to(device).float()
             preds = model(x)
-            _, predicted = torch.max(preds.data, 1)
             total += y.size(0)
 
             predicted_index = torch.argmax(preds.data, 1)
