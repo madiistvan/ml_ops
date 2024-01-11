@@ -6,7 +6,7 @@ from tests import _PATH_DATA, _PROJECT_ROOT
 import hydra
 from torch.utils.data import DataLoader
 
-config_path = os.path.join(_PROJECT_ROOT,'config')
+config_path = os.path.join(_PROJECT_ROOT, 'config')
 
 hydra.initialize(config_path=config_path, version_base=None)
 hparams = hydra.compose(config_name="train_config")
