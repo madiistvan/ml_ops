@@ -6,7 +6,7 @@ from tests import _PATH_DATA, _PROJECT_ROOT
 import hydra
 from torch.utils.data import DataLoader
 
-config_path = os.path.join(_PROJECT_ROOT,'config')
+config_path = os.path.join(_PROJECT_ROOT, 'config')
 
 hydra.initialize(config_path=config_path, version_base=None)
 hparams = hydra.compose(config_name="train_config")
@@ -25,5 +25,8 @@ test_ldr = DataLoader(val, batch_size=batch_size, shuffle=True)
 def test_data():
     assert len(train_ldr) > 0, "Dataset did not have the correct number of samples"
     assert len(test_ldr) > 0, "Dataset did not have the correct number of samples"
+<<<<<<< HEAD
     assert len(train_ldr) > len(test_ldr), "Train set should be larger than test set"
     assert train_ldr.dataset[0][0].shape == torch.Size([3, 200, 200]), "Input data shape is incorrect"    
+=======
+>>>>>>> dev
