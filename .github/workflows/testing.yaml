@@ -34,6 +34,8 @@ jobs:
           sudo apt-get update
           sudo apt-get install gcsfuse
           mkdir "$HOME/gs"
-          gcsfuse dtu-mlops-data-bucket "$HOME/gs"
+          gcsfuse "$HOME/gs"
       - name: Run tests
-        run: pytest tests/
+        run: |
+          ls /home/runner/gs
+          pytest tests/
