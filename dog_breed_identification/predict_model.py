@@ -1,7 +1,9 @@
-import torch, torchvision
+import torch
+import torchvision
 import os
 import pandas as pd
 from dog_breed_identification.models.model import Model
+
 
 def predict(model: torch.nn.Module, directory: str, return_label: bool = True) -> None:
     """Run prediction for a given model and folder of pictures with a .jpg extension.
@@ -23,7 +25,8 @@ def predict(model: torch.nn.Module, directory: str, return_label: bool = True) -
     transform = torchvision.transforms.Resize((200, 200))
 
     if return_label:
-        labels = pd.read_csv('data/processed/breeds.csv', index_col=0, names=['breed'])
+        labels = pd.read_csv('data/processed/breeds.csv',
+                             index_col=0, names=['breed'])
 
     output = []
     for jpg_file in jpg_files:
@@ -42,8 +45,3 @@ def predict(model: torch.nn.Module, directory: str, return_label: bool = True) -
             output.append((jpg_file, predicted_index))
 
     return output
-
-
-
-
-
