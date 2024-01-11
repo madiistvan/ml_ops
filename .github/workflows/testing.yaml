@@ -27,6 +27,7 @@ jobs:
           sudo apt-get update
           sudo apt-get install gcsfuse
           mkdir /gcs
+          chmod 777 /gcs 
           gcsfuse dtu-mlops-data-bucket /gcs
       - id: 'auth'
         name: 'Authenticate to Google Cloud'
