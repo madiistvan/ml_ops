@@ -19,6 +19,7 @@ jobs:
           cache: 'pip'
       - name: Install dependencies
         run: |
+          pwd
           python -m pip install --upgrade pip
           pip install -r requirements.txt
           export GCSFUSE_REPO=gcsfuse-`lsb_release -c -s`
@@ -26,9 +27,7 @@ jobs:
           curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
           sudo apt-get update
           sudo apt-get install gcsfuse
-          mkdir /gcs
-          chmod 777 /gcs 
-          gcsfuse dtu-mlops-data-bucket /gcs
+          gcsfuse dtu-mlops-data-bucket /
       - id: 'auth'
         name: 'Authenticate to Google Cloud'
         uses: 'google-github-actions/auth@v1'
