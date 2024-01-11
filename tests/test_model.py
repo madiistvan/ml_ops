@@ -6,4 +6,3 @@ def test_model():
     model = Model()
     out = model(test_input)
     assert out.shape == torch.Size([1,120]), "Output shape is incorrect"
-    pass
