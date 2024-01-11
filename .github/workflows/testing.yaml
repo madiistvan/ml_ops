@@ -35,7 +35,7 @@ jobs:
           sudo apt-get install gcsfuse
           mkdir "$HOME/gs"
           gcsfuse "$HOME/gs"
+          ls "$HOME/gs"
       - name: Run tests
         run: |
-          ls /home/runner/gs
           pytest tests/
