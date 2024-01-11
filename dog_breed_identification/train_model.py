@@ -20,10 +20,8 @@ device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 batch_size = hparams.batch_size
 dataset_path = hparams.data_path
 
-with open(f'{dataset_path}/train.pt', 'r') as f:
-    train = torch.load(f)
-with open(f'{dataset_path}/val.pt', 'r') as f:
-    val = torch.load(f)
+train = torch.load(f'{dataset_path}/train.pt')
+val = torch.load(f'{dataset_path}/val.pt')
 
 # Create dataloaders
 train_loader = DataLoader(train, batch_size=batch_size, shuffle=True)
