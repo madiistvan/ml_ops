@@ -25,7 +25,7 @@ jobs:
       - name: Install dependencies
         run: |
           pwd
-          ls
+          ls ~
           python -m pip install --upgrade pip
           pip install -r requirements.txt
           export GCSFUSE_REPO=gcsfuse-`lsb_release -c -s`
