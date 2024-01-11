@@ -20,7 +20,6 @@ device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 batch_size = hparams.batch_size
 dataset_path = hparams.data_path
 
-# Load data
 train = torch.load(f'{dataset_path}/train.pt')
 val = torch.load(f'{dataset_path}/val.pt')
 

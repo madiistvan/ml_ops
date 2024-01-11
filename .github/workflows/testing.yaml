@@ -17,14 +17,24 @@ jobs:
         with:
           python-version: '3.10'
           cache: 'pip'
+      - id: 'auth'
+        name: 'Authenticate to Google Cloud'
+        uses: 'google-github-actions/auth@v1'
+        with:
+          credentials_json: ${{ secrets.DATA_BUCKET_SERVICE_ACCOUNT_2 }}
       - name: Install dependencies
         run: |
+          pwd
+          ls ~
+          export GCSFUSE_REPO=gcsfuse-`lsb_release -c -s`
+          echo "deb https://packages.cloud.google.com/apt $GCSFUSE_REPO main" | sudo tee /etc/apt/sources.list.d/gcsfuse.list
+          curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
+          sudo apt-get update
+          sudo apt-get install gcsfuse
+          mkdir "$HOME/gs"
+          gcsfuse "$HOME/gs"
           python -m pip install --upgrade pip
           pip install -r requirements.txt
-      - uses: iterative/setup-dvc@v1
-      - name: Get data
-        run: dvc pull
-        env:
-          GDRIVE_CREDENTIALS_DATA: ${{ secrets.GDRIVE_CREDENTIALS_DATA }}
       - name: Run tests
-        run: pytest tests/
+        run: |
+          pytest tests/
