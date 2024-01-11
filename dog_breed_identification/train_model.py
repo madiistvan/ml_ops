@@ -21,10 +21,9 @@ batch_size = hparams.batch_size
 dataset_path = hparams.data_path
 
 with open(f'{dataset_path}/train.pt', 'r') as f:
-    f.read()
-
-train = torch.load(f'{dataset_path}/train.pt')
-val = torch.load(f'{dataset_path}/val.pt')
+    train = torch.load(f)
+with open(f'{dataset_path}/val.pt', 'r') as f:
+    val = torch.load(f)
 
 # Create dataloaders
 train_loader = DataLoader(train, batch_size=batch_size, shuffle=True)
