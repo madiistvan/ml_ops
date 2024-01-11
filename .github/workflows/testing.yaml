@@ -17,6 +17,11 @@ jobs:
         with:
           python-version: '3.10'
           cache: 'pip'
+      - id: 'auth'
+        name: 'Authenticate to Google Cloud'
+        uses: 'google-github-actions/auth@v1'
+        with:
+          credentials_json: ${{ secrets.DATA_BUCKET_SERVICE_ACCOUNT_2 }}
       - name: Install dependencies
         run: |
           pwd
@@ -27,11 +32,6 @@ jobs:
           curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
           sudo apt-get update
           sudo apt-get install gcsfuse
-          gcsfuse dtu-mlops-data-bucket /
-      - id: 'auth'
-        name: 'Authenticate to Google Cloud'
-        uses: 'google-github-actions/auth@v1'
-        with:
-          credentials_json: ${{ secrets.DATA_BUCKET_SERVICE_ACCOUNT_2 }}
+          gcsfuse dtu-mlops-data-bucket /data/processed
       - name: Run tests
         run: pytest tests/
