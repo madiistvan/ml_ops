@@ -10,11 +10,13 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    
     env:
       PROJECT_ID: dtu-mlops-project-410911
       GCP_CREDENTIALS: ${{ secrets.DATA_BUCKET_SERVICE_ACCOUNT_2 }}
       CONTAINER_NAME: dog-breed-identification-api
       SERVICE_NAME: dog-breed-identification-api
+    
     steps:
     
     - name: Google Cloud Authentication
@@ -39,7 +41,7 @@ jobs:
       args:
       - 'run'
       - 'deploy'
-      - '${{ env.SERVICE_NAME }}}}'
+      - '${{ env.SERVICE_NAME }}'
       - '--image'
       - 'gcr.io/${{ env.PROJECT_ID }}/${{ env.CONTAINER_NAME }}:latest'
       - '--region'
