@@ -9,7 +9,7 @@ from dog_breed_identification.models.model import Model
 # Init wandb
 wandb.init(project="dog-breed-identification")
 
-# Get config
+# Get  config
 hydra.initialize(config_path="config", version_base=None)
 hparams = hydra.compose(config_name="train_config")
 

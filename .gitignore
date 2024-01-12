@@ -178,3 +178,5 @@ cython_debug/
 /dog-breed-identification
 models/*.pth
 wandb/
+data/processed/
+data/raw/
