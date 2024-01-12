@@ -24,11 +24,19 @@ jobs:
     - name: Set up Cloud SDK
       uses: google-github-actions/setup-gcloud@v1
 
-    - name: Build docker image
-      uses: gcr.io/cloud-builders/docker
+    - name: gcr.io/cloud-builders/docker
       args: ['build', '-t', 'gcr.io/${{ env.PROJECT_ID }}/${{ env.CONTAINER_NAME }}:latest', '.'] 
 
-    - name: Push docker image to Container Registry
-      uses: gcr.io/cloud-builders/docker
+    - name: gcr.io/cloud-builders/docker
       args: ['push', 'gcr.io/${{ env.PROJECT_ID }}/${{ env.CONTAINER_NAME }}:latest']
-
+    
+    - name: gcr.io/google.com/cloudsdktool/cloud-sdk
+      entrypoint: gcloud
+      args:
+      - 'run'
+      - 'deploy'
+      - '${{ env.SERVICE_NAME }}'
+      - '--image'
+      - 'gcr.io/${{ env.PROJECT_ID }}/${{ env.CONTAINER_NAME }}:latest'
+      - '--region'
+      - 'europe-west1'
