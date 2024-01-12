@@ -6,8 +6,9 @@ import torchvision
 import pandas as pd
 from typing import List
 
+
 def get_params():
-    BUCKET_NAME = "dog-breed-identification-model" 
+    BUCKET_NAME = "dog-breed-identification-model"
     MODEL_FILE = "exp2.pth"
 
     client = storage.Client()
@@ -29,6 +30,7 @@ def get_model():
 
     return model
 
+
 def predict_one(imagefile):
     try:
         contents = imagefile.file.read()
@@ -46,7 +48,8 @@ def predict_one(imagefile):
         output = model(image)
         output = torch.softmax(output, dim=1)
         probability, breed_idx = torch.max(output, dim=1)
-        predicted_breed = breeds[breeds["id"] == breed_idx.item()]["breed"].values[0]
+        predicted_breed = breeds[breeds["id"] ==
+                                 breed_idx.item()]["breed"].values[0]
 
         return {
             "filename": imagefile.filename,
@@ -69,9 +72,11 @@ def predict_one(imagefile):
     finally:
         imagefile.file.close()
 
+
 app = FastAPI()
 model = get_model()
 breeds = pd.read_csv('src/breeds.csv', names=["id", "breed"])
+
 
 @app.get("/")
 async def root():
@@ -83,8 +88,8 @@ async def root():
 @app.post("/predict")
 def predict(imagefiles: List[UploadFile]):
     predictions = []
-    
+
     for imagefile in imagefiles:
         predictions.append(predict_one(imagefile))
-    
+
     return predictions
