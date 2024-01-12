@@ -6,7 +6,7 @@ from tests import _PATH_DATA, _PROJECT_ROOT
 import hydra
 from torch.utils.data import DataLoader
 
-if os.path.exists("/gs"):
+if os.path.exists("/home/runner/gs"):
     print(f'The file gs exists.')
 
 config_path = os.path.join(_PROJECT_ROOT, 'config')

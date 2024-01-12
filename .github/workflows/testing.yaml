@@ -31,10 +31,10 @@ jobs:
           curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
           sudo apt-get update
           sudo apt-get install gcsfuse
-          mkdir -p /gs
-          sudo ls /gs
-          gcsfuse --key-file=$GOOGLE_APPLICATION_CREDENTIALS /gs
-          cd /gs
+          mkdir -p "$HOME/gs"
+          sudo ls $HOME/gs
+          gcsfuse --key-file=$GOOGLE_APPLICATION_CREDENTIALS $HOME/gs
+          cd $HOME/gs
           python -m pip install --upgrade pip
           pip install -r requirements.txt
       - name: Run tests
