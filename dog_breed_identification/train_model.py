@@ -9,11 +9,11 @@ from dog_breed_identification.models.model import Model
 # Init wandb
 wandb.init(project="dog-breed-identification")
 
-# Get config
+# Get  config
 hydra.initialize(config_path="config", version_base=None)
 hparams = hydra.compose(config_name="train_config")
 
-# Hyperparameters
+# Hyperparameters 
 num_epochs = hparams.epochs
 learnig_rate = hparams.lr
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
