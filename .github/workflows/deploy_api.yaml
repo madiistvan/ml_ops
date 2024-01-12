@@ -1,11 +1,9 @@
 name: Deploy API
+
 on:
-  workflow_dispatch:
-    inputs:
-      modelName:
-        description: 'Name of the model in the bucket dog-breed-identification-model'    
-        required: true
-        default: 'exp2.pth'
+  push:
+    branches:
+      - "*"
 
 jobs:
   build:
