@@ -15,8 +15,8 @@ hparams = hydra.compose(config_name="train_config")
 dataset_path = hparams.data_path
 batch_size = hparams.batch_size
 
-val = torch.load(f'{dataset_path}/val.pt')
-train = torch.load(f'{dataset_path}/train.pt')
+val = LoadData.load(f'{dataset_path}/val.pt')
+train = LoadData.load(f'{dataset_path}/train.pt')
 # Create dataloaders
 train_ldr = DataLoader(train, batch_size=batch_size, shuffle=True)
 test_ldr = DataLoader(val, batch_size=batch_size, shuffle=True)
