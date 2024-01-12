@@ -5,6 +5,7 @@ import hydra
 import wandb
 import pandas as pd
 from dog_breed_identification.models.model import Model
+from dog_breed_identification.data.load_data import LoadData
 
 # Init wandb
 wandb.init(project="dog-breed-identification")
@@ -20,8 +21,8 @@ device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 batch_size = hparams.batch_size
 dataset_path = hparams.data_path
 
-train = torch.load(f'{dataset_path}/train.pt')
-val = torch.load(f'{dataset_path}/val.pt')
+train = LoadData.load(f'{dataset_path}/train.pt')
+val = LoadData.load(f'{dataset_path}/val.pt')
 
 # Create dataloaders
 train_loader = DataLoader(train, batch_size=batch_size, shuffle=True)
