@@ -1,0 +1,46 @@
+name: Deploy API
+on:
+  workflow_dispatch:
+    inputs:
+      modelName:
+        description: 'Name of the model in the bucket dog-breed-identification-model'     
+        required: true
+        default: 'exp2.pth'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      PROJECT_ID: dtu-mlops-project-410911
+      GCP_CREDENTIALS: ${{ secrets.DATA_BUCKET_SERVICE_ACCOUNT_2 }}
+      CONTAINER_NAME: dog-breed-identification-api
+      SERVICE_NAME: dog-breed-identification-api
+    steps:
+    
+    - name: Google Cloud Authentication
+      uses: 'google-github-actions/auth@v1'
+      with: 
+        credentials_json: '${{ env.GCP_CREDENTIALS }}'
+
+    - name: Set up Cloud SDK
+      uses: 'google-github-actions/setup-gcloud@v1'
+    
+    - name: Build docker image
+      uses: 'gcr.io/cloud-builders/docker'
+      args: ['build', '-t', 'gcr.io/${{ env.PROJECT_ID }}/${{ env.CONTAINER_NAME }}:latest', '.'] 
+
+    - name: Push docker image to Container Registry
+      uses: 'gcr.io/cloud-builders/docker'
+      args: ['push', 'gcr.io/${{ env.PROJECT_ID }}/${{ env.CONTAINER_NAME }}:latest']
+    
+    - name: Deploy API
+      uses: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+      entrypoint: gcloud
+      args:
+      - 'run'
+      - 'deploy'
+      - '${{ env.SERVICE_NAME }}}}'
+      - '--image'
+      - 'gcr.io/${{ env.PROJECT_ID }}/${{ env.CONTAINER_NAME }}:latest'
+      - '--region'
+      - 'europe-west1'
