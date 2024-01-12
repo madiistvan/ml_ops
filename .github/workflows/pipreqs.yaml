@@ -3,9 +3,7 @@ name: Generate requirements.txt
 on:
   push:
     branches:
-      - main
-      - dev
-      - workflows
+      - "*"
 
 jobs:
   build:
