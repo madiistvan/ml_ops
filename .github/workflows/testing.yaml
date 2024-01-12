@@ -31,7 +31,8 @@ jobs:
           curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
           sudo apt-get update
           sudo apt-get install gcsfuse
-          mkdir "$HOME/gs"
+          mkdir -p "$HOME/gs"
+          ls $HOME/gs
           gcsfuse --key-file=$GOOGLE_APPLICATION_CREDENTIALS $HOME/gs
           ls $HOME/gs
           python -m pip install --upgrade pip
