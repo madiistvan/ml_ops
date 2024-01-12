@@ -3,7 +3,8 @@ from tests import _PATH_DATA, _PROJECT_ROOT
 import hydra
 from hydra.core.global_hydra import GlobalHydra
 import os
-
+import io
+import torch
 class LoadData:
     config_path = os.path.join(_PROJECT_ROOT, 'config')
     if not GlobalHydra().is_initialized():
@@ -17,5 +18,5 @@ class LoadData:
         blob = LoadData.bucket.blob(blob_name)
         with blob.open("rb") as f: # rb important otherwise it will be read as string and fails with some character encoding error
             data = f.read()
-        return data
+        return torch.load(io.BytesIO(data))
         
