@@ -5,6 +5,8 @@ from hydra.core.global_hydra import GlobalHydra
 import os
 import io
 import torch
+
+
 class LoadData:
     config_path = os.path.join(_PROJECT_ROOT, 'config')
     if not GlobalHydra().is_initialized():
@@ -13,10 +15,10 @@ class LoadData:
     storage_client = storage.Client()
     bucket_name = hparams.data_bucket_name
     bucket = storage_client.bucket(bucket_name)
-    
+
     def load(blob_name):
         blob = LoadData.bucket.blob(blob_name)
-        with blob.open("rb") as f: # rb important otherwise it will be read as string and fails with some character encoding error
+        # rb important otherwise it will be read as string and fails with some character encoding error
+        with blob.open("rb") as f:
             data = f.read()
         return torch.load(io.BytesIO(data))
-        
