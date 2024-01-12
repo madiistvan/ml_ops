@@ -5,7 +5,7 @@ import hydra
 import wandb
 import pandas as pd
 from dog_breed_identification.models.model import Model
-from data.load_data import LoadData
+from dog_breed_identification.data.load_data import LoadData
 
 # Init wandb
 wandb.init(project="dog-breed-identification")

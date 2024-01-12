@@ -5,7 +5,7 @@ import torch
 from tests import _PATH_DATA, _PROJECT_ROOT
 import hydra
 from torch.utils.data import DataLoader
-from data.load_data import LoadData
+from dog_breed_identification.data.load_data import LoadData
 
 config_path = os.path.join(_PROJECT_ROOT, 'config')
 
