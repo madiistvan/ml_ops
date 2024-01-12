@@ -28,8 +28,8 @@ jobs:
 
     - name: Commit changes
       run: |
-        git config --global user.name 'Boldizsar Elek'
-        git config --global user.email 'boldizsarelek@gmail.com'
+        git config --global user.name 'Istvan Madi'
+        git config --global user.email 'madi.istvan20@gmail.com'
         git add requirements.txt
-        git diff-index --quiet HEAD || git commit -m "requirements.txt update"
+        git diff-index --quiet HEAD || git commit -m "Updating requirements.txt"
         git push
