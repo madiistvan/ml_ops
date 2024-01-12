@@ -5,9 +5,7 @@ import torch
 from tests import _PATH_DATA, _PROJECT_ROOT
 import hydra
 from torch.utils.data import DataLoader
-
-if os.path.exists("/home/runner/gs"):
-    print(f'The file gs exists.')
+from data.load_data import LoadData
 
 config_path = os.path.join(_PROJECT_ROOT, 'config')
 
@@ -16,8 +14,8 @@ hparams = hydra.compose(config_name="train_config")
 dataset_path = hparams.data_path
 batch_size = hparams.batch_size
 
-train = torch.load(f'{dataset_path}/train.pt')
-val = torch.load(f'{dataset_path}/val.pt')
+train = LoadData.load(f'{dataset_path}/train.pt')
+val = LoadData.load(f'{dataset_path}/val.pt')
 # Create dataloaders
 train_ldr = DataLoader(train, batch_size=batch_size, shuffle=True)
 test_ldr = DataLoader(val, batch_size=batch_size, shuffle=True)
