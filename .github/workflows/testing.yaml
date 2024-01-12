@@ -34,7 +34,7 @@ jobs:
           mkdir -p "$HOME/gs"
           sudo ls $HOME/gs
           gcsfuse --key-file=$GOOGLE_APPLICATION_CREDENTIALS $HOME/gs
-          ls $HOME/gs
+          sudo ls $HOME/gs
           python -m pip install --upgrade pip
           pip install -r requirements.txt
       - name: Run tests
