@@ -7,25 +7,16 @@ import wandb
 import pandas as pd
 from dog_breed_identification.models.model import Model
 from dog_breed_identification.data.load_data import LoadData
+import os
 
 # Init wandb
 wandb.init(project="dog-breed-identification")
 
-# Get config
-hydra.initialize(config_path="config", version_base=None)
 
 # Hyperparameters
 hparams = hydra.compose(config_name="train_config")
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 dataset_path = hparams.data_path
-
-train = LoadData.load(f'{dataset_path}/train.pt')
-val = LoadData.load(f'{dataset_path}/val.pt')
-
-# Create dataloaders
-train_loader = DataLoader(train, batch_size=batch_size, shuffle=True)
-val_loader = DataLoader(val, batch_size=batch_size, shuffle=True)
-
 
 # Load model
 model = Model()
@@ -35,7 +26,10 @@ model.train()
 
 def train(num_epochs, learning_rate, batch_size, model_name):
     # Load data
-    train = torch.load(f'{dataset_path}/train.pt')
+    if os.path.exists(f"{dataset_path}/train.pt"):
+        train = torch.load("data/processed/train.pt")
+    else:
+        train = LoadData.load(f'{dataset_path}/train.pt')
     # Create dataloaders
     train_loader = DataLoader(train, batch_size=batch_size, shuffle=True)
 
@@ -70,7 +64,10 @@ def train(num_epochs, learning_rate, batch_size, model_name):
 
 
 def evaluate(batch_size):
-    val = torch.load(f'{dataset_path}/val.pt')
+    if os.path.exists(f"{dataset_path}/val.pt"):
+        val = torch.load(f"{dataset_path}/val.pt")
+    else:
+        val = LoadData.load(f'{dataset_path}/val.pt')
     val_loader = DataLoader(val, batch_size=batch_size, shuffle=False)
 
     model.eval()
