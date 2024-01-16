@@ -57,7 +57,6 @@ def train(num_epochs, learning_rate, batch_size, model_name):
                     f"Batch Index: {batch_idx} Loss: {loss.item() / batch_size}")
                 wandb.log({"Train loss:": loss.item() / batch_size})
 
-
             optimizer.zero_grad()
             loss.backward()
             optimizer.step()
@@ -100,6 +99,7 @@ def evaluate(batch_size):
         wandb.log({
             "Examples": wandb.Image(x[i], caption=f"Predicted: {predicted_breed}, Correct: {correct_breed}"),
         })
+
 
 @click.command()
 @click.option('--num_epochs', default=hparams.epochs, type=int, help='Set the num_epochs')
