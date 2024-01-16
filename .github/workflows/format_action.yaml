@@ -1,9 +1,7 @@
 name: Autopep8 Format and Commit
 
 on:
-  push:
-    branches:
-      - '*'
+  workflow_dispatch:
 
 jobs:
   autopep8:
@@ -29,7 +27,7 @@ jobs:
     - name: Commit changes
       run: |
         git config --global user.name 'Istvan Madi'
-        git config --global user.email 'madi.sitvan20@gmail.com'
+        git config --global user.email 'madi.istvan20@gmail.com'
         git add .
         git diff-index --quiet HEAD || git commit -m "Autopep8 formatting"
         git push

@@ -178,3 +178,11 @@ cython_debug/
 data/
 wandb/
 .dvc/
+
+/dog-breed-identification
+models/*.pth
+wandb/
+data/processed/
+data/raw/
+api/*.pth
+api/src/*.csv

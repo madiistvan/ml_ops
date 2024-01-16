@@ -1,8 +1,5 @@
 name: Manual Model Training Workflow
 
-env:
-  ENVIRONMENT: cpu
-
 on:
   workflow_dispatch:
 
@@ -10,10 +7,12 @@ jobs:
   connect-to_gcp:
     runs-on: ubuntu-latest
     steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
     - name: Gcp Auth
       uses: 'google-github-actions/auth@v1'
       with: 
-        credentials_json: '${{ secrets.DATA_BUCKET_SERVICE_ACCOUNT_2 }}'
+        credentials_json: '${{ secrets.GCP_TRAIN }}'
     - name: 'Set up Cloud SDK'
       uses: 'google-github-actions/setup-gcloud@v1'
       with:
@@ -23,4 +22,4 @@ jobs:
         gcloud ai custom-jobs create \
         --region=europe-west1 \
         --display-name=test-run \
-        --config=$ENVIRONMENT_config.yaml
+        --config=.github/config/cpu_config.yaml
