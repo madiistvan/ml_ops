@@ -1,5 +1,4 @@
 from google.cloud import storage
-from tests import _PATH_DATA, _PROJECT_ROOT
 import hydra
 from hydra.core.global_hydra import GlobalHydra
 import os
@@ -8,7 +7,7 @@ import torch
 
 
 class LoadData:
-    config_path = os.path.join(_PROJECT_ROOT, 'config')
+    config_path = os.path.join("..", 'config')
     if not GlobalHydra().is_initialized():
         hydra.initialize(config_path=config_path, version_base=None)
     hparams = hydra.compose(config_name="train_config")
