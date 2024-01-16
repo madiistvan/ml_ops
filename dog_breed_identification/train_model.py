@@ -1,3 +1,4 @@
+import click
 import torch
 from torch.utils.data import DataLoader
 import timm
@@ -10,15 +11,12 @@ from dog_breed_identification.data.load_data import LoadData
 # Init wandb
 wandb.init(project="dog-breed-identification")
 
-# Get  config
+# Get config
 hydra.initialize(config_path="config", version_base=None)
-hparams = hydra.compose(config_name="train_config")
 
 # Hyperparameters
-num_epochs = hparams.epochs
-learnig_rate = hparams.lr
+hparams = hydra.compose(config_name="train_config")
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-batch_size = hparams.batch_size
 dataset_path = hparams.data_path
 
 train = LoadData.load(f'{dataset_path}/train.pt')
@@ -28,17 +26,23 @@ val = LoadData.load(f'{dataset_path}/val.pt')
 train_loader = DataLoader(train, batch_size=batch_size, shuffle=True)
 val_loader = DataLoader(val, batch_size=batch_size, shuffle=True)
 
+
 # Load model
 model = Model()
 model.to(device)
 model.train()
 
-# Loss and optimizer
-loss_fn = torch.nn.CrossEntropyLoss(reduction='sum')
-optimizer = torch.optim.Adam(model.parameters(), lr=learnig_rate)
 
+def train(num_epochs, learning_rate, batch_size, model_name):
+    # Load data
+    train = torch.load(f'{dataset_path}/train.pt')
+    # Create dataloaders
+    train_loader = DataLoader(train, batch_size=batch_size, shuffle=True)
 
-def train():
+    # Loss and optimizer
+    loss_fn = torch.nn.CrossEntropyLoss(reduction='sum')
+    optimizer = torch.optim.Adam(model.parameters(), lr=learning_rate)
+
     for epoch in range(num_epochs):
         overall_loss = 0
         for batch_idx, (x, y) in enumerate(train_loader):
@@ -62,10 +66,13 @@ def train():
               )
 
     print("Training complete, saving model...")
-    torch.save(model.state_dict(), f'models/{hparams.name}.pth')
+    torch.save(model.state_dict(), f'models/{model_name}.pth')
 
 
-def evaluate():
+def evaluate(batch_size):
+    val = torch.load(f'{dataset_path}/val.pt')
+    val_loader = DataLoader(val, batch_size=batch_size, shuffle=False)
+
     model.eval()
     with torch.no_grad():
         correct = 0
@@ -94,6 +101,15 @@ def evaluate():
         })
 
 
+@click.command()
+@click.option('--num_epochs', default=hparams.epochs, type=int, help='Set the num_epochs')
+@click.option('--learning_rate', default=hparams.lr, type=float, help='Set the learning_rate')
+@click.option('--batch_size', default=hparams.batch_size, type=int, help='Set the batch_size')
+@click.option('--model_name', default=hparams.name, type=str, help='Set the model file name')
+def main(num_epochs, learning_rate, batch_size, model_name):
+    train(num_epochs, learning_rate, batch_size, model_name)
+    evaluate(batch_size)
+
+
 if __name__ == '__main__':
-    train()
-    evaluate()
+    main()
