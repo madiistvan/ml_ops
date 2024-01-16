@@ -1,0 +1,6 @@
+fastapi==0.108.0
+pandas==2.1.4
+protobuf==3.20.3
+timm==0.9.12
+torch==2.1.2
+torchvision==0.16.2
