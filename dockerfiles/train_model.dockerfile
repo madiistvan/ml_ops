@@ -10,6 +10,9 @@ COPY pyproject.toml pyproject.toml
 COPY dog_breed_identification/ dog_breed_identification/
 COPY data/ data/
 
+# This is 100% not the correct way to do it
+COPY dog_breed_identification/config /usr/local/lib/python3.11/site-packages/dog_breed_identification/config
+
 WORKDIR /
 RUN pip install -r requirements.txt --no-cache-dir
 RUN pip install . --no-deps --no-cache-dir
