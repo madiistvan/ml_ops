@@ -3,7 +3,7 @@ name: DVC pulling and testing
 on:
   push:
     branches:
-      - "*"
+      - "dev"
 
 jobs:
   test-and-deploy-to-staging:
