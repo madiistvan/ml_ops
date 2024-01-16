@@ -15,7 +15,6 @@ def get_breeds():
     bucket = client.get_bucket(BUCKET_NAME)
     blob = bucket.get_blob(BREEDS_FILE)
 
-
     blob.download_to_filename(f"src/breeds.csv")
 
 
