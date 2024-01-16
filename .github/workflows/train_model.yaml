@@ -1,0 +1,25 @@
+name: Manual Model Training Workflow
+
+on:
+  workflow_dispatch:
+
+jobs:
+  connect-to_gcp:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+    - name: Gcp Auth
+      uses: 'google-github-actions/auth@v1'
+      with: 
+        credentials_json: '${{ secrets.GCP_TRAIN }}'
+    - name: 'Set up Cloud SDK'
+      uses: 'google-github-actions/setup-gcloud@v1'
+      with:
+        version: '>= 363.0.0'
+    - name: 'Start Model Training'
+      run: |
+        gcloud ai custom-jobs create \
+        --region=europe-west1 \
+        --display-name=test-run \
+        --config=.github/config/cpu_config.yaml

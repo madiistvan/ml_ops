@@ -1,9 +1,7 @@
 name: Autopep8 Format and Commit
 
 on:
-  push:
-    branches:
-      - '*'
+  workflow_dispatch:
 
 jobs:
   autopep8:

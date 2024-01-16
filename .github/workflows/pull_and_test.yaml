@@ -1,9 +1,7 @@
 name: DVC pulling and testing
 
 on:
-  push:
-    branches:
-      - "dev"
+  workflow_dispatch:
 
 jobs:
   test-and-deploy-to-staging:
