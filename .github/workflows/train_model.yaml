@@ -25,4 +25,4 @@ jobs:
         gcloud ai custom-jobs create \
         --region=europe-west1 \
         --display-name=test-run \
-        --config=.github/config/$ENVIRONMENT_config.yaml
+        --config=.github/config/{{$ENVIRONMENT}}_config.yaml
