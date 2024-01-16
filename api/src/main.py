@@ -7,6 +7,18 @@ import pandas as pd
 from typing import List
 
 
+def get_breeds():
+    BUCKET_NAME = "dtu-mlops-data-bucket"
+    BREEDS_FILE = "data/processed/breeds.csv"
+
+    client = storage.Client()
+    bucket = client.get_bucket(BUCKET_NAME)
+    blob = bucket.get_blob(BREEDS_FILE)
+
+
+    blob.download_to_filename(f"src/breeds.csv")
+
+
 def get_params():
     BUCKET_NAME = "dog-breed-identification-model"
     MODEL_FILE = "exp2.pth"
@@ -75,6 +87,7 @@ def predict_one(imagefile):
 
 app = FastAPI()
 model = get_model()
+get_breeds()
 breeds = pd.read_csv('src/breeds.csv', names=["id", "breed"])
 
 
