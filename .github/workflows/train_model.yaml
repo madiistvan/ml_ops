@@ -18,9 +18,10 @@ jobs:
       uses: 'google-github-actions/setup-gcloud@v1'
       with:
         version: '>= 363.0.0'
+    - uses: actions/checkout@v3
     - name: 'Start Model Training'
       run: |
         gcloud ai custom-jobs create \
         --region=europe-west1 \
         --display-name=test-run \
-        --config=$ENVIRONMENT_config.yaml
+        --config=.github/config/$ENVIRONMENT_config.yaml
