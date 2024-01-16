@@ -1,0 +1,31 @@
+name: Generate requirements.txt
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.x'
+
+    - name: Install pipreqs
+      run: python -m pip install pipreqs
+
+    - name: Generate requirements.txt
+      run: pipreqs . --force
+
+    - name: Commit changes
+      run: |
+        git config --global user.name 'Istvan Madi'
+        git config --global user.email 'madi.istvan20@gmail.com'
+        git add requirements.txt
+        git diff-index --quiet HEAD || git commit -m "Updating requirements.txt"
+        git push
