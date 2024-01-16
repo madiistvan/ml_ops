@@ -7,7 +7,7 @@ import torch
 
 
 class LoadData:
-    config_path = os.path.join("/", 'config')
+    config_path = os.path.join("..", 'config')
     if not GlobalHydra().is_initialized():
         hydra.initialize(config_path=config_path, version_base=None)
     hparams = hydra.compose(config_name="train_config")
