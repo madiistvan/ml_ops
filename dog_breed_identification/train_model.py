@@ -7,12 +7,13 @@ import pandas as pd
 from dog_breed_identification.models.model import Model
 from dog_breed_identification.data.load_data import LoadData
 import os
-from dog_breed_identification import train_config
+
+# Load config
+hydra.initialize(config_path="config", version_base=None)
+train_config = hydra.compose(config_name="train_config")
 
 # Init wandb
 wandb.init(project="dog-breed-identification")
-
-
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 dataset_path = train_config.data_path
