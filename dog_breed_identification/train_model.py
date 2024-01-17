@@ -1,22 +1,21 @@
 import click
 import torch
 from torch.utils.data import DataLoader
-import timm
 import hydra
 import wandb
 import pandas as pd
 from dog_breed_identification.models.model import Model
 from dog_breed_identification.data.load_data import LoadData
 import os
+from dog_breed_identification import train_config
 
 # Init wandb
 wandb.init(project="dog-breed-identification")
 
 
-# Hyperparameters
-hparams = hydra.compose(config_name="train_config")
+
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-dataset_path = hparams.data_path
+dataset_path = train_config.data_path
 
 # Load model
 model = Model()
@@ -99,10 +98,10 @@ def evaluate(batch_size):
 
 
 @click.command()
-@click.option('--num_epochs', default=hparams.epochs, type=int, help='Set the num_epochs')
-@click.option('--learning_rate', default=hparams.lr, type=float, help='Set the learning_rate')
-@click.option('--batch_size', default=hparams.batch_size, type=int, help='Set the batch_size')
-@click.option('--model_name', default=hparams.name, type=str, help='Set the model file name')
+@click.option('--num_epochs', default=train_config.epochs, type=int, help='Set the num_epochs')
+@click.option('--learning_rate', default=train_config.lr, type=float, help='Set the learning_rate')
+@click.option('--batch_size', default=train_config.batch_size, type=int, help='Set the batch_size')
+@click.option('--model_name', default=train_config.name, type=str, help='Set the model file name')
 def main(num_epochs, learning_rate, batch_size, model_name):
     train(num_epochs, learning_rate, batch_size, model_name)
     evaluate(batch_size)
