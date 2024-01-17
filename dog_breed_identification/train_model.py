@@ -14,9 +14,6 @@ import omegaconf
 hydra.initialize(config_path="config", version_base=None)
 train_config = hydra.compose(config_name="train_config")
 
-# Init wandb
-wandb.init(project="dog-breed-identification")
-
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 dataset_path = train_config.data_path
 
@@ -136,20 +133,20 @@ def evaluate(batch_size):
 @click.option('--batch_size', default=train_config.batch_size, type=int, help='Set the batch_size')
 @click.option('--model_name', default=train_config.name, type=str, help='Set the model file name')
 def main(num_epochs, learning_rate, batch_size, model_name):
-    if num_epochs != hparams.epochs:
-        hparams.epochs = num_epochs
+    if num_epochs != train_config.epochs:
+        train_config.epochs = num_epochs
 
-    if learning_rate != hparams.lr:
-        hparams.lr = learning_rate
+    if learning_rate != train_config.lr:
+        train_config.lr = learning_rate
 
-    if batch_size != hparams.batch_size:
-        hparams.batch_size = batch_size
+    if batch_size != train_config.batch_size:
+        train_config.batch_size = batch_size
 
-    if model_name != hparams.name:
-        hparams.name = model_name
+    if model_name != train_config.name:
+        train_config.name = model_name
 
     config = omegaconf.OmegaConf.to_container(
-        hparams, resolve=True, throw_on_missing=True
+        train_config, resolve=True, throw_on_missing=True
     )
     wandb.init(project="dog_breed_identification", config=config)
 
