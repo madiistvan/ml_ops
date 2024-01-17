@@ -15,6 +15,7 @@ hydra.initialize(config_path="config", version_base=None)
 train_config = hydra.compose(config_name="train_config")
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+print(f"Using {device} for training...")
 dataset_path = train_config.data_path
 
 # Load model
@@ -79,7 +80,7 @@ def train(num_epochs, learning_rate, batch_size, model_name):
     print(train_config.model_bucket_name)
     model_saver = SaveModel(model, train_config.model_bucket_name)
     model_name = model_saver.save()
-    wandb.run.summary({'Model Name': model_name})
+    wandb.run.summary['Model Name'] = model_name
 
 
 def evaluate(batch_size):
@@ -121,7 +122,7 @@ def evaluate(batch_size):
     accuracy = 100 * correct / total
 
     print(f"Accuracy (validation): {accuracy}")
-    wandb.run.summary({'Accuracy (validation)': accuracy})
+    wandb.run.summary["Accuracy (validation)"] = accuracy
 
 
 @click.command()
