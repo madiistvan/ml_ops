@@ -3,8 +3,9 @@ from datetime import datetime
 import pickle
 import torch
 
+
 class SaveModel:
-    def __init__(self, model, bucket_name): 
+    def __init__(self, model, bucket_name):
         self.model = model
         self.bucket_name = bucket_name
         self.storage_client = storage.Client()

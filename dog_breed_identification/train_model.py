@@ -59,16 +59,18 @@ def train(num_epochs, learning_rate, batch_size, model_name):
                 print(
                     f"Batch Index: {batch_idx} Loss: {loss.item() / y.size(0)}")
                 wandb.log({"Training Loss (batch)": loss.item() / y.size(0)})
-                wandb.log({"Training Accuracy (batch)": 100 * correct_on_batch / y.size(0)})
+                wandb.log({"Training Accuracy (batch)": 100 *
+                          correct_on_batch / y.size(0)})
 
             optimizer.zero_grad()
             loss.backward()
             optimizer.step()
 
         print(f"Epoch {epoch + 1} complete! \t Average Loss: {overall_loss / ((batch_idx + 1) * batch_size)} \t Accuracy: {100 * correct / total}")
-        
+
         wandb.log({"Epoch": epoch + 1})
-        wandb.log({"Average Loss (epoch)": overall_loss / ((batch_idx + 1) * batch_size)})
+        wandb.log({"Average Loss (epoch)": overall_loss /
+                  ((batch_idx + 1) * batch_size)})
         wandb.log({"Training Accuracy (epoch)": 100 * correct / total})
 
     print("Training complete, saving model...")
@@ -105,7 +107,6 @@ def evaluate(batch_size):
             predicted_index = torch.argmax(preds.data, 1)
             correct_index = torch.argmax(y, 1)
             correct += (predicted_index == correct_index).sum().item()
-        
 
     labels = pd.read_csv('data/processed/breeds.csv', names=["id", "breed"])
 
@@ -123,7 +124,6 @@ def evaluate(batch_size):
 
     print(f"Accuracy (validation): {accuracy}")
     wandb.run.summary({'Accuracy (validation)': accuracy})
-    
 
 
 @click.command()
