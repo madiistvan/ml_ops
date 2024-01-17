@@ -260,8 +260,7 @@ make requirements
 > Answer:
 
 --- We implemented multiple workflows. We had two worklfows that would generate the [requiremnets](https://github.com/madiistvan/ml_ops/actions/runs/7543090217/job/20533319577) and [format](https://github.com/madiistvan/ml_ops/actions/runs/7555351828/job/20570149236) the pushed code however we found it distrubing and changed them from automatic to manual trigger. Secondly we had a workflow that runs our [tests](https://github.com/madiistvan/ml_ops/actions/runs/7558614715/job/20580548192). Furthermore we have a [manually triggerable](https://github.com/madiistvan/ml_ops/actions/runs/7556429310/job/20573415140) workflow that starts a training job with Vertex AI. This workflow also could be configured for different environments (such as cpu, gpu, because we did not get increased quota for gpus that part is unimplemented)
-During running our tests we used pip cache when downloading dependencies. 
----
+During running our tests we used pip cache when downloading dependencies. ---
 
 ## Running code and tracking experiments
 
