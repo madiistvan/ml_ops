@@ -228,7 +228,7 @@ make requirements
 >
 > Answer:
 
---- question 9 fill here ---
+--- We had two protected branches called dev and main. All new features were developed on feauture branches and merged to the dev branch with a pull request. During our project all pull requests required one reviewr to approve the changes and the test workflows to pass. When a new feautere was merged to dev or the dev branch was merged to the main branch various workflows were triggered to publish the new docker images to the cloud. ---
 
 ### Question 10
 
@@ -243,7 +243,7 @@ make requirements
 >
 > Answer:
 
---- question 10 fill here ---
+--- For the first iterations of our pipeline we set up dvc with google drive and than we moved our data to the cloud, to a bucket. Later on both for our tests and model training we opted for directly accessing the data in the bucket. As our data did not change during the course we did not benefit much from having dvc. However, we understand how it would help with reproducibility in case our dataset changed between experiments. ---
 
 ### Question 11
 
@@ -259,7 +259,9 @@ make requirements
 >
 > Answer:
 
---- question 11 fill here ---
+--- We implemented multiple workflows. We had two worklfows that would generate the [requiremnets](https://github.com/madiistvan/ml_ops/actions/runs/7543090217/job/20533319577) and [format](https://github.com/madiistvan/ml_ops/actions/runs/7555351828/job/20570149236) the pushed code however we found it distrubing and changed them from automatic to manual trigger. Secondly we had a workflow that runs our [tests](https://github.com/madiistvan/ml_ops/actions/runs/7558614715/job/20580548192). Furthermore we have a [manually triggerable](https://github.com/madiistvan/ml_ops/actions/runs/7556429310/job/20573415140) workflow that starts a training job with Vertex AI. This workflow also could be configured for different environments (such as cpu, gpu, because we did not get increased quota for gpus that part is unimplemented)
+During running our tests we used pip cache when downloading dependencies. 
+---
 
 ## Running code and tracking experiments
 
@@ -278,7 +280,7 @@ make requirements
 >
 > Answer:
 
---- question 12 fill here ---
+--- We saved the trained model with the network layout and the used hydra config files to a separate folder in a bucket dedicated for each specific expirememnt. Triggering and experiment can be done by merging to dev or main branches and triggering the manual workflow to start training. After the training job ended the required data to reproduce is saved. The experiments and created data can be seen in our wandb project. Also it is possible to trigger an experiment from the terminal the same data is saved in the same manner as previously described.  ---
 
 ### Question 13
 
@@ -293,7 +295,7 @@ make requirements
 >
 > Answer:
 
---- question 13 fill here ---
+--- We carfully created our experiment setup to optimize for reproduciblity we used config files. To reproduce an experiment one would need to see the experiments page in wandb locate the model and weights with the config file from our model bucket. Load them and either merge them to one fo the protected branches and trigger the manual workflow or run training locally in the teminal. ---
 
 ### Question 14
 
