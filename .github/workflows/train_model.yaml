@@ -24,8 +24,10 @@ jobs:
         version: '>= 363.0.0'
     - name: Replace placeholder in config.yml
       run: |
-        sed -i "s/\$WANDB_API_KEY/${{ secrets.WANDB_API_KEY }}/g" .github/config/${{ github.event.inputs.env }}_config.yaml
+        sed 's/$WANDB_API_KEY/'"$WANDB_API_KEY"'/' .github/config/cpu_config.yaml
         cat .github/config/${{ github.event.inputs.env }}_config.yaml
+      env:
+        WANDB_API_KEY: ${{ secrets.WANDB_API_KEY }}
     - name: 'Start Model Training'
       run: |
         gcloud ai custom-jobs create \
