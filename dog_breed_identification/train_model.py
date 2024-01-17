@@ -28,8 +28,7 @@ def train(num_epochs, learning_rate, batch_size, model_name):
     if os.path.exists(f"{dataset_path}/train.pt"):
         train = torch.load("data/processed/train.pt")
     else:
-        train = LoadData.load(f'{dataset_path}/train.pt')
-
+        train = LoadData.load(f'{dataset_path}/train.pt', train_config)
     # Create dataloaders
     train_loader = DataLoader(train, batch_size=batch_size, shuffle=True)
 
@@ -90,9 +89,7 @@ def evaluate(batch_size):
     if os.path.exists(f"{dataset_path}/val.pt"):
         val = torch.load(f"{dataset_path}/val.pt")
     else:
-        val = LoadData.load(f'{dataset_path}/val.pt')
-
-    # Create dataloaders
+        val = LoadData.load(f'{dataset_path}/val.pt', train_config)
     val_loader = DataLoader(val, batch_size=batch_size, shuffle=False)
 
     model.eval()
