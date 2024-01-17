@@ -105,7 +105,7 @@ end of the project.
 >
 > Answer:
 
---- question 1 fill here ---
+--- Group 37 ---
 
 ### Question 2
 > **Enter the study number for each member in the group**
@@ -116,7 +116,7 @@ end of the project.
 >
 > Answer:
 
---- question 2 fill here ---
+--- s233084, s233085, s232971 ---
 
 ### Question 3
 > **What framework did you choose to work with and did it help you complete the project?**
@@ -129,7 +129,7 @@ end of the project.
 >
 > Answer:
 
---- question 3 fill here ---
+--- As a third-party framework we used a pre-trained model called MobileNet V3 from [Pytorch Image Models](https://github.com/huggingface/pytorch-image-models). MobileNet V3 is a pre-trained image classifier which we could fine-tune with our dataset by re-training the output layer of the model. This model definitely helped us in completing the project as we could achieve a ~65% accuracy on the test set without sacrificing much time in the model definition and data preprocessing. Although this metric is not too high, many of the images in the dataset are hard to classify (e.g. there are multiple objects in the image), and we find that in images where only one dog is present with a generic background, the model tends to correctly classify.  ---
 
 ## Coding environment
 
@@ -148,7 +148,12 @@ end of the project.
 >
 > Answer:
 
---- question 4 fill here ---
+--- We used a dedicated conda environment locally to manage the project dependencies. When a new package was added to the project, the team member would also add that to the requirements.txt with either the `pipreqs` command or manually. We have also experimented with adding a workflow that does this task automatically, but we found it rather annoying than useful. We also experienced some issues with the `pipreqs` package, for example it does not add the `google-cloud-storage` dependecy. For a new team member to get a copy of our environement in order to be able to start working on the project, the following commands need to be exectued.
+```bash
+git clone https://github.com/madiistvan/ml_ops.git
+make requirements
+```
+---
 
 ### Question 5
 
