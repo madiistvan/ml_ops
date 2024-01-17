@@ -76,8 +76,8 @@ def train(num_epochs, learning_rate, batch_size, model_name):
     print("Training complete, saving model...")
 
     # Save model
-    print(hparams.model_bucket_name)
-    model_saver = SaveModel(model, hparams.model_bucket_name)
+    print(train_config.model_bucket_name)
+    model_saver = SaveModel(model, train_config.model_bucket_name)
     model_name = model_saver.save()
     wandb.run.summary({'Model Name': model_name})
 
