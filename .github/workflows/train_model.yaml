@@ -24,10 +24,9 @@ jobs:
         version: '>= 363.0.0'
     - name: Replace placeholder in config.yml
       run: |
-        echo ${{secrets.WANDB_API_KEY}} | sed 's/./& /g'
-
         sed 's/$WANDB_API_KEY/'"$WANDB_API_KEY"'/' .github/config/${{ github.event.inputs.env }}_config.yaml > ./.github/config/config.yaml
-        cat ./.github/config/config.yaml | sed 's/./& /g'
+#        cat ./.github/config/config.yaml | sed 's/./& /g' # This is to check that the key is correctly set
+#        echo ${{ secrets.WANDB_API_KEY }} | sed 's/./& /g' 
       env:
         WANDB_API_KEY: ${{ secrets.WANDB_API_KEY }}
     - name: 'Start Model Training'
