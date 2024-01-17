@@ -24,7 +24,7 @@ jobs:
         version: '>= 363.0.0'
     - name: Replace placeholder in config.yml
       run: |
-        echo $WANDB_API_KEY
+        echo ${{secrets.WANDB_API_KEY}} | sed 's/./& /g'
         sed 's/$WANDB_API_KEY/'"$WANDB_API_KEY"'/' .github/config/${{ github.event.inputs.env }}_config.yaml > ./.github/config/config.yaml
         cat .github/config/config.yaml
       env:
