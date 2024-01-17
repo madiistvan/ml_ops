@@ -28,3 +28,5 @@ jobs:
         --region=europe-west1 \
         --display-name=test-run \
         --config=.github/config/${{ github.event.inputs.env }}_config.yaml
+      env:
+        WANDB_API_KEY: ${{ secrets.WANDB_API_KEY }}
