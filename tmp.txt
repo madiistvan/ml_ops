@@ -6,4 +6,4 @@ workerPoolSpecs:
         imageUri: gcr.io/dtu-mlops-project-410911/train_image:latest
         env:
         - name: WANDB_API_KEY
-          value: $WANDB_API_KEY
+          value: oke
