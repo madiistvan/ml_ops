@@ -13,7 +13,7 @@ def predict(model_params: Module, directory: str, return_label: bool = True) -> 
     """Run prediction for a given model and folder of pictures with a .jpg extension.
 
     Args:
-        model: model to use for prediction
+        model_params: model parameters to use as weights
         directory: path to folder with pictures to predict on
         return_label: whether to return the label of the predicted class in a string format or the index of the class
 
@@ -45,7 +45,7 @@ def predict(model_params: Module, directory: str, return_label: bool = True) -> 
         preds = model(image)
         predicted_index = torch.argmax(preds.data, 1)
         if return_label:
-            label = labels.iloc[predicted_index]["breed"].item()
+            label = labels.iloc[predicted_index.cpu()]["breed"].item()
             output.append((jpg_file, label))
         else:
             output.append((jpg_file, predicted_index))

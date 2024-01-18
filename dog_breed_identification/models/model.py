@@ -8,5 +8,5 @@ class Model(torch.nn.Module):
         self.model = timm.create_model('mobilenetv3_large_100',
                                        pretrained=True, num_classes=120)
 
-    def forward(self, x):
+    def forward(self, x: torch.Tensor):
         return self.model(x)
