@@ -11,7 +11,7 @@ from torch.utils.data import TensorDataset
 # from PIL import Image
 
 
-def get_labels(labels):
+def get_labels(labels: pd.DataFrame):
     """Returns a list of ids and a tensor of labels"""
     ids = []
     label_tensor = []

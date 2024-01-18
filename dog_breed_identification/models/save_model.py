@@ -2,10 +2,11 @@ from google.cloud import storage
 from datetime import datetime
 import pickle
 import torch
+from dog_breed_identification.models.model import Model
 
 
 class SaveModel:
-    def __init__(self, model, bucket_name):
+    def __init__(self, model: Model, bucket_name: str):
         self.model = model
         self.bucket_name = bucket_name
         self.storage_client = storage.Client()

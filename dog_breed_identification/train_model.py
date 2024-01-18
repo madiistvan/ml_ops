@@ -24,7 +24,7 @@ model.to(device)
 model.train()
 
 
-def train(num_epochs, learning_rate, batch_size, model_name):
+def train(num_epochs: int, learning_rate: float, batch_size: int, model_name: str):
     # Load data
     if os.path.exists(f"{dataset_path}/train.pt"):
         train = torch.load("data/processed/train.pt")
@@ -83,8 +83,7 @@ def train(num_epochs, learning_rate, batch_size, model_name):
     wandb.run.summary['Model Name'] = model_name
 
 
-def evaluate(batch_size):
-
+def evaluate(batch_size: int):
     print("Evaluating model...")
     # Load data
     if os.path.exists(f"{dataset_path}/val.pt"):
@@ -130,7 +129,7 @@ def evaluate(batch_size):
 @click.option('--learning_rate', default=train_config.lr, type=float, help='Set the learning_rate')
 @click.option('--batch_size', default=train_config.batch_size, type=int, help='Set the batch_size')
 @click.option('--model_name', default=train_config.name, type=str, help='Set the model file name')
-def main(num_epochs, learning_rate, batch_size, model_name):
+def main(num_epochs: int, learning_rate: float, batch_size: int, model_name: str):
     if num_epochs != train_config.epochs:
         train_config.epochs = num_epochs
 
