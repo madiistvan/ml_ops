@@ -49,15 +49,14 @@ def train():
             if batch_idx % 1 == 0:
                 print(
                     f"Batch Index: {batch_idx} Loss: {loss.item() / batch_size}")
-                #wandb.log({"Train loss:": loss.item() / batch_size})
-            
+                # wandb.log({"Train loss:": loss.item() / batch_size})
+
             optimizer.zero_grad()
             loss.backward()
             optimizer.step()
         print("Epoch", epoch + 1, "complete!", "\tAverage Loss: ",
               overall_loss / ((batch_idx + 1) * batch_size),
               )
-
 
 
 def evaluate():
@@ -86,7 +85,7 @@ def evaluate():
                                correct_index[i].item()]["breed"].values[0]
         predicted_breed = labels[labels["id"] ==
                                  predicted_index[i].item()]["breed"].values[0]
-   
+
     target = torch.cat(target, dim=0)
     preds = torch.cat(predss, dim=0)
     report = classification_report(target, preds)
