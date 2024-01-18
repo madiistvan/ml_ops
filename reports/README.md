@@ -445,7 +445,7 @@ Example response of the web api: ```[{"filename":"0a01f3b0c6d250c08785716c562e2d
 >
 > Answer:
 
---- question 23 fill here ---
+--- We did not manage to implement monitoring of our deployed model, but monitoring certain features could help us detecting problematic trends. As we are using images as inputs we could extract features from the training data and data sent to our predict endpoint and see if our model becomes obsolate for some reason (e.g. data drifting). Furthermore, monitoring what kind of classes our model outputs (or what kind of dogs are given as input to our model) would let us know better what users use our model for. Additionally, we could measure how fast our model does the forward pass, to see if there are major bottlenecks in our implementation.---
 
 ### Question 24
 
