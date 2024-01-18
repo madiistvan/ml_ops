@@ -480,7 +480,7 @@ Example response of the web api: ```[{"filename":"0a01f3b0c6d250c08785716c562e2d
 >
 > Answer:
 
---- question 25 fill here ---
+--- ![img](https://github.com/madiistvan/ml_ops/assets/63722535/d4faab20-75fd-4d80-a6b9-6a9b7b65d83c) ---
 
 ### Question 26
 
