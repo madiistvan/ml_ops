@@ -10,13 +10,17 @@ from hydra.core.global_hydra import GlobalHydra
 config_path = os.path.join(_PROJECT_ROOT, 'config')
 
 if not GlobalHydra().is_initialized():
-    hydra.initialize(config_path=config_path, version_base=None)
-hparams = hydra.compose(config_name="train_config")
-dataset_path = hparams.data_path
-batch_size = hparams.batch_size
+    hydra.initialize(config_path="../dog_breed_identification/config", version_base=None)
+train_config = hydra.compose(config_name="train_config")
+dataset_path = train_config.data_path
+batch_size = train_config.batch_size
 
-val = LoadData.load(f'{dataset_path}/val.pt')
-train = LoadData.load(f'{dataset_path}/train.pt')
+if os.path.exists(f"{dataset_path}/train.pt"):
+    train = torch.load("data/processed/train.pt")
+    val = torch.load("data/processed/val.pt")
+else:
+    train = LoadData.load(f'{dataset_path}/train.pt', train_config)
+    val = LoadData.load(f'{dataset_path}/val.pt', train_config)
 # Create dataloaders
 train_ldr = DataLoader(train, batch_size=batch_size, shuffle=True)
 test_ldr = DataLoader(val, batch_size=batch_size, shuffle=True)

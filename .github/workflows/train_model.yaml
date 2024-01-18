@@ -22,9 +22,16 @@ jobs:
       uses: 'google-github-actions/setup-gcloud@v1'
       with:
         version: '>= 363.0.0'
+    - name: Replace placeholder in config.yml
+      run: |
+        sed 's/$WANDB_API_KEY/'"$WANDB_API_KEY"'/' .github/config/${{ github.event.inputs.env }}_config.yaml > ./.github/config/config.yaml
+#        cat ./.github/config/config.yaml | sed 's/./& /g' # This is to check that the key is correctly set
+#        echo ${{ secrets.WANDB_API_KEY }} | sed 's/./& /g' 
+      env:
+        WANDB_API_KEY: ${{ secrets.WANDB_API_KEY }}
     - name: 'Start Model Training'
       run: |
         gcloud ai custom-jobs create \
         --region=europe-west1 \
         --display-name=test-run \
-        --config=.github/config/${{ github.event.inputs.env }}_config.yaml
+        --config=.github/config/config.yaml
