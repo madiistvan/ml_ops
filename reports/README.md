@@ -116,7 +116,7 @@ end of the project.
 >
 > Answer:
 
---- s233084, s233085, s232971, s233516 ---
+--- s233084, s233085, s232971, s233516, s233107 ---
 
 ### Question 3
 > **What framework did you choose to work with and did it help you complete the project?**
@@ -168,7 +168,7 @@ make requirements
 > *experiments.*
 > Answer:
 
---- question 5 fill here ---
+--- As a structure we used the cookiecutter template in our project. The make_dataset.py is responsible for the dataset construction and the predict_model.py and train_model.py were developed along with additional utility files. We have added the a folder named tests, which contains our unit tests related to the data, the endpoints and the model. In addition, 'api' folfer has been created for the source code of the deployed model and we also have added a '.dvc' folder to hold metadata files associated with data versioning, utilizing cloud services. We have removed the notebooks folder because we did not use any Jupyter notebook.
 
 ### Question 6
 
@@ -198,7 +198,8 @@ make requirements
 >
 > Answer:
 
---- question 7 fill here ---
+In total, we have implemented three tests responsible for assessing the data, endpoints, and the model—considered the most critical components of our application. The tests turned out to be very useful, because with the help of the workflow, we always saw when the tests failed. We could ensure that tests are automatically executed whenever changes are pushed to the repository. This means that we could quickly identify and address problems, preventing flawed code from being merged into the main codebase.
+
 
 ### Question 8
 
