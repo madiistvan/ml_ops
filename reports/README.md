@@ -213,7 +213,7 @@ make requirements
 >
 > Answer:
 
---- Running the coverage package on the predefined tests, we got result of 86% coverage. The reason for this is that our tests check if the data already exists in the repository, resulting that some parts will not be checked if the data is already present in the folder. We should also note that our tests does not check every python script present in the repository, so we should not expect a completely error free code even if the percentage is 100%. Also if the code coverage was 100% that does not mean all code pathes were checked.---
+--- Running the coverage package on the predefined tests, we got result of 86% coverage. The reason for this is that our tests check if the data already exists in the repository, resulting that some parts will not be checked if the data is already present in the folder. We should also note that our tests does not check every python script present in the repository, so we should not expect a completely error free code even if the percentage is 100%. Also if the code coverage was 100% that does not mean all code pathes were checked. Our implemented test, however can detect most of the errors made during changes. ---
 
 ### Question 9
 
