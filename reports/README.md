@@ -326,7 +326,11 @@ During running our tests we used pip cache when downloading dependencies. ---
 >
 > Answer:
 
---- We created docker files for the functionality we wanted to deploy to the cloud. In our case that means we had two docker files one for running training a new model and one for deploying rained models to the cloud. We did not run images manually as theye were built with Cloud Build and stored in Container Registry, and the training job was ran with Vertex Ai. (the commands to run can be found in the workflow) During this project we wanted everything to be automatized as possible and to use Google Cloud Functionality as much as we can [link to docker file in our repository](https://github.com/madiistvan/ml_ops/blob/report/dockerfiles/train_model.dockerfile) ---
+--- We created docker files for the functionality we wanted to deploy to the cloud. In our case that means we had two docker files one for running training a new model and one for deploying rained models to the cloud. We did not run images manually as theye were built with Cloud Build and stored in Container Registry, and the training job was ran with Vertex Ai. (the commands to run can be found in the workflow) During this project we wanted everything to be automatized as possible and to use Google Cloud Functionality as much as we can [link to docker file in our repository](https://github.com/madiistvan/ml_ops/blob/report/dockerfiles/train_model.dockerfile).In case someone wants they can also create the docker images and run the containers locally. In the case of training, the run command would look like: 
+```
+docker run --name exp1 train:latest --num_epochs 5 --batch_size 64 --lr 0.005 --model_name model1
+``` 
+--- ---
 
 ### Question 16
 
