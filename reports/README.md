@@ -384,7 +384,10 @@ docker run --name exp1 train:latest --num_epochs 5 --batch_size 64 --lr 0.005 --
 >
 > Answer:
 
---- We did not use Compute engine. We did our training using Vertex Ai, therefore this question is not applicable for our project. ---
+--- We did not use Compute engine. We did our training using Vertex Ai, therefore this question is not applicable for our project.
+We did not use Compute engine. We did our training using Vertex Ai, therefore this question is not applicable for our project.
+We did not use Compute engine. We did our training using Vertex Ai, therefore this question is not applicable for our project.   We did not use Compute engine. We did our training using Vertex Ai, therefore this question is not applicable for our project.
+We did not use Compute engine. We did our training using Vertex Ai, therefore this question is not applicable for our project. ---
 
 ### Question 19
 
