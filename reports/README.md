@@ -243,7 +243,7 @@ make requirements
 >
 > Answer:
 
---- For the first iterations of our pipeline we set up dvc with google drive and than we moved our data to the cloud, to a bucket. Later on both for our tests and model training we opted for directly accessing the data in the bucket. As our data did not change during the course we did not benefit much from having dvc. However, we understand how it would help with reproducibility in case our dataset changed between experiments. ---
+--- For the first iterations of our pipeline we set up dvc with google drive. This was working fine and than we moved our data to the cloud, to a bucket. We reconfigured a new remote (Google Cloud Storage Bucket) for dvc. Later on both for our tests and model training we opted for directly accessing the data in the bucket so we replaced the dvc pull tasks with direct acces. As our data did not change during the course we did not benefit much from having dvc. However, we understand how it would help with reproducibility in case our dataset changed between experiments. ---
 
 ### Question 11
 
