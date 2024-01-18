@@ -294,7 +294,7 @@ During running our tests we used pip cache when downloading dependencies. ---
 >
 > Answer:
 
---- We carefully created our experiment setup to optimize for reproduciblity we used config files. To reproduce an experiment one would need to see the experiments page in wandb locate the model and weights with the config file from our model bucket. Load them and either merge them to one fo the protected branches and trigger the manual workflow or run training locally in the teminal. ---
+--- We carefully created our experiment setup to optimize for reproduciblity we used config files for all of our new experiments. To reproduce an experiment one would need to see the experiments page in wandb locate the model and weights with the config file from our model bucket. Load them and either merge them to one fo the protected branches and trigger the manual workflow or run training locally in the teminal. By saving the layout of the network and the hyperparameters we have everything to reproduce previously done experiments and because we saved our models we can even compare our findings. ---
 
 ### Question 14
 
