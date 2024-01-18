@@ -45,6 +45,10 @@ train:
 
 predict:
 	python $(PROJECT_NAME)/predict_model.py $(W) $(DIR)
+
+train_cml:
+	python $(PROJECT_NAME)/train_cml.py
+
 #################################################################################
 # Documentation RULES                                                           #
 #################################################################################
