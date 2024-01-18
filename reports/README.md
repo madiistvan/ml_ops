@@ -198,7 +198,7 @@ make requirements
 >
 > Answer:
 
-In total, we have implemented three tests responsible for assessing the data, endpoints, and the model—considered the most critical components of our application. The tests turned out to be very useful, because with the help of the workflow, we always saw when the tests failed. We could ensure that tests are automatically executed whenever changes are pushed to the repository. This means that we could quickly identify and address problems, preventing flawed code from being merged into the main codebase.
+--- In total, we have implemented three tests responsible for assessing the data, endpoints, and the model—considered the most critical components of our application. The tests turned out to be very useful, because with the help of the workflow, we always saw when the tests failed. We could ensure that tests are automatically executed whenever changes are pushed to the repository. This means that we could quickly identify and address problems, preventing flawed code from being merged into the main codebase. ---
 
 
 ### Question 8
@@ -331,7 +331,7 @@ During running our tests we used pip cache when downloading dependencies. ---
 ```
 docker run --name exp1 train:latest --num_epochs 5 --batch_size 64 --lr 0.005 --model_name model1
 ``` 
---- ---
+---
 
 ### Question 16
 
@@ -405,7 +405,7 @@ We did not use Compute engine. We did our training using Vertex Ai, therefore th
 >
 > Answer:
 
---- ![img](https://github.com/madiistvan/ml_ops/assets/63722535/e8239b41-41ce-4f1c-b613-ca69b9c4a0fd) 
+--- ![img](https://github.com/madiistvan/ml_ops/assets/63722535/e8239b41-41ce-4f1c-b613-ca69b9c4a0fd) ---
 
 
 ### Question 21
@@ -431,7 +431,7 @@ We did not use Compute engine. We did our training using Vertex Ai, therefore th
 >
 > Answer:
 
----First, we developed a separate python file for predicting based on a pretrained model. Secondly, with FastApi we created a web api that takes in one or multiple images and than predicts the dog breed for each image passed as an input. We created a docker file that when built runs the aforementioned web api. This docker docker image is built with the help of Cloud Build whenever new changes were added to dev or main branches and than with CLoud Run it is deployed and can be accessed with the following command:. ```curl -X POST https://dog-breed-identification-api-k3daan6qya-ew.a.run.app/predict -F "PATH_TO_YOUR_IMAGE"```
+--- First, we developed a separate python file for predicting based on a pretrained model. Secondly, with FastApi we created a web api that takes in one or multiple images and than predicts the dog breed for each image passed as an input. We created a docker file that when built runs the aforementioned web api. This docker docker image is built with the help of Cloud Build whenever new changes were added to dev or main branches and than with CLoud Run it is deployed and can be accessed with the following command:. ```curl -X POST https://dog-breed-identification-api-k3daan6qya-ew.a.run.app/predict -F "PATH_TO_YOUR_IMAGE"```
 
 Example response of the web api: ```[{"filename":"0a01f3b0c6d250c08785716c562e2d4d.jpg","probability":0.6926616430282593,"breed_idx":81,"breed":"norwich_terrier","status":"success","message":"Cute puppy detected"}]``` ---
 
@@ -514,4 +514,6 @@ Example response of the web api: ```[{"filename":"0a01f3b0c6d250c08785716c562e2d
 >
 > Answer:
 
---- Student s232971: Set up our data stroage in the cloud and dvc. Training model in the cloud with vertex ai, workflow for training, parameterizing training, Unit test for data and model covarage + workflow. Auto fromatting workflow. Direct data loading from storage bucket. Managed the git repo. Most of the report. ---
+--- Student s232971: Set up our data stroage in the cloud and dvc. Training model in the cloud with vertex ai, workflow for training, parameterizing training, Unit test for data and model covarage + workflow. Auto fromatting workflow. Direct data loading from storage bucket. Managed the git repo. Most of the report. Figuring out WandB auth with Vertex AI with s233084. 
+
+Student 233084: Code typing. Adding arguments to prediction file. Deploying the model with a FastAPI endpoint and setting up trigger and cloudbuilds for continous deployment. Setting up and using Hydra. Creating the repository template with cookicutter. Creating dockerfiles for training and deploying model. Setting up Weights and Biases and using it for basic monitoring. Figuring out WandB auth with Vertex AI with s232971. ---
