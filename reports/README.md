@@ -451,7 +451,7 @@ During running our tests we used pip cache when downloading dependencies. ---
 >
 > Answer:
 
---- question 24 fill here ---
+--- We used one account that shared the project with the rest of the group. Most of the credits were spent on cloud storage as we store all of our docker images that were evere built and one's size is around 2GB. In total we spent aproximatelly ~14$ ---
 
 ## Overall discussion of project
 
