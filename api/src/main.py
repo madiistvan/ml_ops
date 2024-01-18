@@ -20,7 +20,6 @@ from PIL import Image
 from io import BytesIO
 import torchvision.transforms.functional as F
 import traceback
-from pathlib import Path
 
 
 def get_breeds():
@@ -58,16 +57,16 @@ def get_model():
     return model
 
 
-def predict_one(imagefile):
+def predict_one(imagefile, filename):
     try:
-        contents = imagefile.file.read()
+        contents = imagefile.read()
         with open("image.png", "wb") as f:
             f.write(contents)
 
         transform = torchvision.transforms.Compose([
             torchvision.transforms.Resize((200, 200))
         ])
-
+        print("here1")
         image = torchvision.io.read_image("image.png")
         image = transform(image)
         image = image.unsqueeze(0)
@@ -79,7 +78,7 @@ def predict_one(imagefile):
                                  breed_idx.item()]["breed"].values[0]
 
         return {
-            "filename": imagefile.filename,
+            "filename": filename,
             "probability": probability.item(),
             "breed_idx": breed_idx.item(),
             "breed": predicted_breed,
@@ -89,15 +88,13 @@ def predict_one(imagefile):
     except Exception as e:
         print(e)
         return {
-            "filename": imagefile.filename,
+            "filename": filename,
             "probability": -1,
             "breed_idx": -1,
             "breed": "-",
             "status": "error",
             "message": "There was an error predicting for this image. Perhaps the file is not an image or the format of the image is corrupted."
         }
-    finally:
-        imagefile.file.close()
 
 
 # Function to upload a file to Google Cloud Storage
@@ -167,12 +164,20 @@ async def predict_images(background_tasks: BackgroundTasks,
                          imagefiles: List[UploadFile] = File(...),):
     predictions = []
     upload_responses = []
-    for imagefile in imagefiles:
-        # Perform prediction
-        prediction = predict_one(imagefile)
     
+    for imagefile in imagefiles:
+        filename = imagefile.filename
         image_stream = io.BytesIO(await imagefile.read())
-        # Reset the file stream position
+        
+        # Perform prediction
+        try:
+            prediction = predict_one(image_stream, filename)
+        except Exception as e:
+            # Handle prediction error
+            predictions.append({"error": f"Prediction failed for {imagefile.filename}: {str(e)}"})
+            continue
+
+        # Reset the file stream position for uploading
         image_stream.seek(0)
 
         # Construct the destination blob
@@ -245,12 +250,11 @@ async def monitoring():
         data_drift_report = Report(
                                     metrics=[
                                         DataDriftPreset(),
-                                        DataQualityPreset(),
-                                        TargetDriftPreset(),
                                     ]
                                 )
-        data_drift_report.run(reference_data=reference_df,
-                                current_data=production_df,
+                                
+        data_drift_report.run(reference_data=reference_df.iloc[1:5],
+                                current_data=production_df[1:5],
                                 column_mapping=None,)
 
         # Save and read report
