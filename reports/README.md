@@ -423,7 +423,7 @@ During running our tests we used pip cache when downloading dependencies. ---
 >
 > Answer:
 
---- question 22 fill here ---
+---First, we developed a separate python file for predicting based on a oretrained model. Secondly, with FastApi we created a web api that takes in an image and than predicts the dog breed. We created a docker file that when built runs the aforementioned web api. This docker docker image is built with the help of Cloud Build whenever new changes were added to dev or main branches and than with CLoud Run it is deployed and can be accessed with the following command:. ```curl -X POST https://dog-breed-identification-api-k3daan6qya-ew.a.run.app/predict -F "PATH_TO_YOUR_IMAGE"```---
 
 ### Question 23
 
