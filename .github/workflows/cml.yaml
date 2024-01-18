@@ -35,6 +35,8 @@ jobs:
           gcsfuse "$HOME/gs"
           python -m pip install --upgrade pip
           pip install -r requirements.txt
+      - name: 'Pull DVC'
+        run: dvc pull
       - name: Run cml
         run: |
           make train_cml
