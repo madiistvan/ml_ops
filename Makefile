@@ -44,6 +44,10 @@ data:
 train:
 	python $(PROJECT_NAME)/train_model.py
 
+## Train model
+train_cml:
+	python $(PROJECT_NAME)/train_cml.py
+
 #################################################################################
 # Documentation RULES                                                           #
 #################################################################################
