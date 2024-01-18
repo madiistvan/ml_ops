@@ -179,7 +179,7 @@ make requirements
 >
 > Answer:
 
---- question 6 fill here ---
+--- We established a GitHub workflow designed to do automatic text formatting using the autopep8 package. Initially, the workflow was configured to activate following each push; however, occasional oversights in pulling the formatted code happened, leading to conflicts. Currently we have a new, optimized workflow that allows manual execution, enhancing overall code management and mitigating potential conflicts.---
 
 ## Version control
 
@@ -213,7 +213,7 @@ make requirements
 >
 > Answer:
 
---- question 8 fill here ---
+--- Running the coverage package on the predefined tests, we got result of 86% coverage. The reason for this is that our tests check if the data already exists in the repository, resulting that some parts will not be checked if the data is already present in the folder. We should also note that our tests does not check every python script present in the repository, so we should not expect a completely error free code even if the percentage is 100%.---
 
 ### Question 9
 
