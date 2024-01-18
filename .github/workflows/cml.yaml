@@ -1,4 +1,5 @@
 name: cml
+
 on:
   push:
     branches:
@@ -6,22 +7,26 @@ on:
   pull_request:
     branches:
       - "*"
+
 jobs:
   cml:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
+
       - name: Setup Python
         uses: actions/setup-python@v4
         with:
           python-version: '3.10'
           cache: 'pip'
+
       - id: 'auth'
         name: 'Authenticate to Google Cloud'
         uses: 'google-github-actions/auth@v1'
         with:
           credentials_json: ${{ secrets.DATA_BUCKET_SERVICE_ACCOUNT_2 }}
+
       - name: Install dependencies
         run: |
           pwd
@@ -35,8 +40,14 @@ jobs:
           gcsfuse "$HOME/gs"
           python -m pip install --upgrade pip
           pip install -r requirements.txt
-      - name: 'Pull DVC'
-        run: dvc pull
+
+      - uses: iterative/setup-dvc@v1
+
+      - name: Get data
+        run: |
+          pip install dvc-gs
+          dvc pull
+
       - name: Run cml
         run: |
           make train_cml
