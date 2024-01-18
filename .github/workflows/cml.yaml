@@ -1,0 +1,53 @@
+name: cml
+
+on:
+  push:
+    branches:
+      - "*"
+  pull_request:
+    branches:
+      - "*"
+
+jobs:
+  cml:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+          cache: 'pip'
+
+      - id: 'auth'
+        name: 'Authenticate to Google Cloud'
+        uses: 'google-github-actions/auth@v1'
+        with:
+          credentials_json: ${{ secrets.DATA_BUCKET_SERVICE_ACCOUNT_2 }}
+
+      - name: Install dependencies
+        run: |
+          pwd
+          ls ~
+          export GCSFUSE_REPO=gcsfuse-`lsb_release -c -s`
+          echo "deb https://packages.cloud.google.com/apt $GCSFUSE_REPO main" | sudo tee /etc/apt/sources.list.d/gcsfuse.list
+          curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
+          sudo apt-get update
+          sudo apt-get install gcsfuse
+          mkdir "$HOME/gs"
+          gcsfuse "$HOME/gs"
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - uses: iterative/setup-dvc@v1
+
+      - name: Get data
+        run: |
+          pip install dvc-gs
+          dvc pull
+
+      - name: Run cml
+        run: |
+          make train_cml
