@@ -127,6 +127,18 @@ def download_image_from_gcs(bucket_name, blob_name):
     return Image.open(BytesIO(image_bytes))
 
 
+def download_train_data_from_gcs():
+    # Get the bucket and blob
+    bucket_name = 'dtu-mlops-data-bucket'
+    blob_name = "data/processed/train.pt"
+    bucket = storage_client.bucket(bucket_name)
+    blob = bucket.blob(blob_name)
+
+    # Download the file as bytes
+    file_bytes = blob.download_as_bytes()
+    return file_bytes
+
+
 def convert_tensor_to_image(tensor):
     image = F.to_pil_image(tensor)
     return image
@@ -190,9 +202,7 @@ async def monitoring():
 
         # Load the training data
         logging.info("Loading training data...")
-        current_file_path = Path(__file__).resolve()
-        train_file_path = current_file_path.parent.parent.parent / 'data/processed/train.pt'
-        train = torch.load(train_file_path)  # Update the path
+        train = torch.load(BytesIO(download_train_data_from_gcs()))
         train_loader = DataLoader(train, batch_size=64, shuffle=True)
         total_batches = len(train_loader)
         batches_to_take = max(1, int(total_batches * reference_percentage))
