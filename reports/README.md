@@ -388,7 +388,7 @@ During running our tests we used pip cache when downloading dependencies. ---
 >
 > Answer:
 
---- <img width="1091" alt="Screenshot 2024-01-18 at 12 59 29" src="https://github.com/madiistvan/ml_ops/assets/63722535/5f9d8d39-5ed5-4a03-84dc-bd2ba454427b"> ---
+--- ![img](https://github.com/madiistvan/ml_ops/assets/63722535/5f9d8d39-5ed5-4a03-84dc-bd2ba454427b) ---
 
 ### Question 20
 
@@ -397,7 +397,7 @@ During running our tests we used pip cache when downloading dependencies. ---
 >
 > Answer:
 
---- <img width="1053" alt="Screenshot 2024-01-18 at 12 57 06" src="https://github.com/madiistvan/ml_ops/assets/63722535/e8239b41-41ce-4f1c-b613-ca69b9c4a0fd"> ---
+--- ![img](https://github.com/madiistvan/ml_ops/assets/63722535/e8239b41-41ce-4f1c-b613-ca69b9c4a0fd) 
 
 
 ### Question 21
