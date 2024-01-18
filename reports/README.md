@@ -518,4 +518,6 @@ Example response of the web api: ```[{"filename":"0a01f3b0c6d250c08785716c562e2d
 
 Student 233084: Code typing. Adding arguments to prediction file. Deploying the model with a FastAPI endpoint and setting up trigger and cloudbuilds for continous deployment. Setting up and using Hydra. Creating the repository template with cookicutter. Creating dockerfiles for training and deploying model. Setting up Weights and Biases and using it for basic monitoring. Figuring out WandB auth with Vertex AI with s232971.
 
-Student s233085: Make dataset, train model and predict model. Writing at keeping track of trained models in data buckets. Monitoring system telemetry of the deployed api + SLOs. Continous integrations by github workflow.---
+Student s233085: Make dataset, train model and predict model. Writing at keeping track of trained models in data buckets. Monitoring system telemetry of the deployed api + SLOs. Continous integrations by github workflow.
+
+Student s233516: Setup version control for our data, use arguments with click(number of epochs, batch size, learning rate and the name of the model), set makefile use parameters, tried to set up monitoring endpoint in order to check how robust your model is towards data drifting---
