@@ -116,7 +116,7 @@ end of the project.
 >
 > Answer:
 
---- s233084, s233085, s232971, s233516 ---
+--- s233084, s233085, s232971, s233516, s233107 ---
 
 ### Question 3
 > **What framework did you choose to work with and did it help you complete the project?**
@@ -168,7 +168,7 @@ make requirements
 > *experiments.*
 > Answer:
 
---- question 5 fill here ---
+--- As a structure we used the cookiecutter template in our project. The make_dataset.py is responsible for the dataset construction and the predict_model.py and train_model.py were developed along with additional utility files. We have added the a folder named tests, which contains our unit tests related to the data, the endpoints and the model. In addition, 'api' folfer has been created for the source code of the deployed model and we also have added a '.dvc' folder to hold metadata files associated with data versioning, utilizing cloud services. We have removed the notebooks folder because we did not use any Jupyter notebook.
 
 ### Question 6
 
@@ -198,7 +198,8 @@ make requirements
 >
 > Answer:
 
---- question 7 fill here ---
+--- In total, we have implemented three tests responsible for assessing the data, endpoints, and the model—considered the most critical components of our application. The tests turned out to be very useful, because with the help of the workflow, we always saw when the tests failed. We could ensure that tests are automatically executed whenever changes are pushed to the repository. This means that we could quickly identify and address problems, preventing flawed code from being merged into the main codebase. ---
+
 
 ### Question 8
 
@@ -311,7 +312,7 @@ During running our tests we used pip cache when downloading dependencies. ---
 >
 > Answer:
 
---- question 14 fill here ---
+--- We used W&B to track our experiments. We also passed our config file to W&B to be able to track our hyperparameters (batch size, learning rate, epochs). Besides that, the config file holds the names of our data buckets, so we are able to see the location of the dataset and the trained models. During training, we track the value of the loss and accuracy on the current batch. After each epoch, we also calculate the average of these values. After the training is finished, we calculate the accuracy on our validation dataset (although we probably should do this at least after each epoch to keep track of overfitting). Some predictions can be seen after the run as we uploaded some images with showing its true label and prediced label from the training set. ![predictions](figures/predictions.png) We can also compare our runs by looking at the created graphs, although the x axis is not unified: trainings with different batch sizes are not aligned because the x axis shows the number of batches. ![curves](figures/curves.png) With our current setup, the best way to compare trained models is to look at the runs tab and check the logged information. ![results](figures/results.png) Here we can see every meaningful information such as validation accuracy, learning rate, epochs and based on this we can evaluate the success of the run. ---
 
 ### Question 15
 
@@ -326,7 +327,11 @@ During running our tests we used pip cache when downloading dependencies. ---
 >
 > Answer:
 
---- We created docker files for the functionality we wanted to deploy to the cloud. In our case that means we had two docker files one for running training a new model and one for deploying rained models to the cloud. We did not run images manually as theye were built with Cloud Build and stored in Container Registry, and the training job was ran with Vertex Ai. (the commands to run can be found in the workflow) During this project we wanted everything to be automatized as possible and to use Google Cloud Functionality as much as we can [link to docker file in our repository](https://github.com/madiistvan/ml_ops/blob/report/dockerfiles/train_model.dockerfile) ---
+--- We created docker files for the functionality we wanted to deploy to the cloud. In our case that means we had two docker files one for running training a new model and one for deploying rained models to the cloud. We did not run images manually as theye were built with Cloud Build and stored in Container Registry, and the training job was ran with Vertex Ai. (the commands to run can be found in the workflow) During this project we wanted everything to be automatized as possible and to use Google Cloud Functionality as much as we can [link to docker file in our repository](https://github.com/madiistvan/ml_ops/blob/report/dockerfiles/train_model.dockerfile).In case someone wants they can also create the docker images and run the containers locally. In the case of training, the run command would look like: 
+```
+docker run --name exp1 train:latest --num_epochs 5 --batch_size 64 --lr 0.005 --model_name model1
+``` 
+---
 
 ### Question 16
 
@@ -379,7 +384,10 @@ During running our tests we used pip cache when downloading dependencies. ---
 >
 > Answer:
 
---- We did not use Compute engine. We did our training using Vertex Ai, therefore this question is not applicable for our project. ---
+--- We did not use Compute engine. We did our training using Vertex Ai, therefore this question is not applicable for our project.
+We did not use Compute engine. We did our training using Vertex Ai, therefore this question is not applicable for our project.
+We did not use Compute engine. We did our training using Vertex Ai, therefore this question is not applicable for our project.   We did not use Compute engine. We did our training using Vertex Ai, therefore this question is not applicable for our project.
+(Want to pass all tests with report.py 's check :) ) ---
 
 ### Question 19
 
@@ -397,7 +405,7 @@ During running our tests we used pip cache when downloading dependencies. ---
 >
 > Answer:
 
---- ![img](https://github.com/madiistvan/ml_ops/assets/63722535/e8239b41-41ce-4f1c-b613-ca69b9c4a0fd) 
+--- ![img](https://github.com/madiistvan/ml_ops/assets/63722535/e8239b41-41ce-4f1c-b613-ca69b9c4a0fd) ---
 
 
 ### Question 21
@@ -423,7 +431,7 @@ During running our tests we used pip cache when downloading dependencies. ---
 >
 > Answer:
 
----First, we developed a separate python file for predicting based on a oretrained model. Secondly, with FastApi we created a web api that takes in an image and than predicts the dog breed. We created a docker file that when built runs the aforementioned web api. This docker docker image is built with the help of Cloud Build whenever new changes were added to dev or main branches and than with CLoud Run it is deployed and can be accessed with the following command:. ```curl -X POST https://dog-breed-identification-api-k3daan6qya-ew.a.run.app/predict -F "PATH_TO_YOUR_IMAGE"```
+--- First, we developed a separate python file for predicting based on a pretrained model. Secondly, with FastApi we created a web api that takes in one or multiple images and than predicts the dog breed for each image passed as an input. We created a docker file that when built runs the aforementioned web api. This docker docker image is built with the help of Cloud Build whenever new changes were added to dev or main branches and than with CLoud Run it is deployed and can be accessed with the following command:. ```curl -X POST https://dog-breed-identification-api-k3daan6qya-ew.a.run.app/predict -F "PATH_TO_YOUR_IMAGE"```
 
 Example response of the web api: ```[{"filename":"0a01f3b0c6d250c08785716c562e2d4d.jpg","probability":0.6926616430282593,"breed_idx":81,"breed":"norwich_terrier","status":"success","message":"Cute puppy detected"}]``` ---
 
@@ -440,7 +448,7 @@ Example response of the web api: ```[{"filename":"0a01f3b0c6d250c08785716c562e2d
 >
 > Answer:
 
---- question 23 fill here ---
+--- We did not manage to implement monitoring of our deployed model, but monitoring certain features could help us detecting problematic trends. As we are using images as inputs we could extract features from the training data and data sent to our predict endpoint and see if our model becomes obsolate for some reason (e.g. data drifting). Furthermore, monitoring what kind of classes our model outputs (or what kind of dogs are given as input to our model) would let us know better what users use our model for. Additionally, we could measure how fast our model does the forward pass, to see if there are major bottlenecks in our implementation.---
 
 ### Question 24
 
@@ -475,7 +483,7 @@ Example response of the web api: ```[{"filename":"0a01f3b0c6d250c08785716c562e2d
 >
 > Answer:
 
---- question 25 fill here ---
+--- ![img](https://github.com/madiistvan/ml_ops/assets/63722535/d4faab20-75fd-4d80-a6b9-6a9b7b65d83c) Our set upp stars from each of the group members setup where we had our onw separate conda environment from the requirements.txt files. Next we have our github repository where we have two protected branches (dev and main). When changes are added to these branche various workflows are triggered and google cloud triggers are run. The workflows: testing, runs all of our tests, optionally formatting and requirement generation. Optional training job starting in Vertex ai. Google cloud triggers are actiated to build our docker files (prediction api image and training image). The images are built with CLoud Build and stored in the Container registry (currently we store all built images, however, due to the very frequent changes megrged to dev and main a significant amount of our credits are spent on storing the previously built images). The built predict api image is than deployed to Cloud run. That can be accessed through the web to test out our model and predic dog breeds. The training image can be triggered manually with the previously mentioned workflow. The experiment's configuration is stored in a separate bucket with the model's layout and the trained weights. Also, the all of the previous components fetch the data from a sparate bucket for data storing either with a dvc pull command or directly accessing it. ---
 
 ### Question 26
 
@@ -489,7 +497,7 @@ Example response of the web api: ```[{"filename":"0a01f3b0c6d250c08785716c562e2d
 >
 > Answer:
 
---- question 26 fill here ---
+--- We spent a great deal of time trying to figure out how we can connect / integrate seperate services or tools. These included accessing the buckets in the Google Storage service from our containers and workflows; figuring out how we can authenticate Weights and Biases inside a container so when we do a training with Vertex AI we can see the logs on the Web UI (this was especially painful and our current solution might not be the best); authenticating to Google services from the GitHub workflows; giving access to service workers. We also spenta lot of time figuring out the automated pipelines which included writing the workflows and docker files. Some other areas where we faced challenges were setting up Hydra properly (the way it initializes was not a hundred percent clear and this caused some issues) and we also had some issues setting up dvc in a GitHub workflow with google cloud storage. Another part that caused some troubles were understanding cloudbuilds and how they relate to Goole Cloud triggers and how to set up these to work properly. Overall, we would say that the most problematic part was authentication, giving permissions in the right places and figuring out how we can use secrets in some places. ---
 
 ### Question 27
 
@@ -506,4 +514,8 @@ Example response of the web api: ```[{"filename":"0a01f3b0c6d250c08785716c562e2d
 >
 > Answer:
 
---- Student s232971: Set up our data stroage in the cloud and dvc. Training model in the cloud with vertex ai, workflow for training, parameterizing training, Unit test for data and model covarage + workflow. Auto fromatting workflow. Direct data loading from storage bucket. Managed the git repo. Most of the report. ---
+--- Student s232971: Set up our data stroage in the cloud and dvc. Training model in the cloud with vertex ai, workflow for training, parameterizing training, Unit test for data and model covarage + workflow. Auto fromatting workflow. Direct data loading from storage bucket. Managed the git repo. Most of the report. Figuring out WandB auth with Vertex AI with s233084. 
+
+Student 233084: Code typing. Adding arguments to prediction file. Deploying the model with a FastAPI endpoint and setting up trigger and cloudbuilds for continous deployment. Setting up and using Hydra. Creating the repository template with cookicutter. Creating dockerfiles for training and deploying model. Setting up Weights and Biases and using it for basic monitoring. Figuring out WandB auth with Vertex AI with s232971.
+
+Student s233085: Make dataset, train model and predict model. Writing at keeping track of trained models in data buckets. Monitoring system telemetry of the deployed api + SLOs. Continous integrations by github workflow.---
