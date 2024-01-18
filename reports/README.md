@@ -341,7 +341,7 @@ During running our tests we used pip cache when downloading dependencies. ---
 >
 > Answer:
 
---- For debugging our python code we took advantage of break points and print statements. We had some troubles with worklows not working as expected. To solve these issues when it was feasible we tried to excecute the command locally to find out what goes wrong. When the commands worked fine locally or could not be run locally we wrote most thing to the output to see the cause of our issues. ---
+--- For debugging our python code we took advantage of break points and print statements to find what we messed up. Also with the help of our automatized test we were ableto detect error and somewhat easily determine which section of our code contains the bugs . We had some troubles with worklows not working as expected. To solve these issues when it was feasible we tried to excecute the command locally to find out what goes wrong. When the commands worked fine locally or could not be run locally we wrote most thing to the output to see the cause of our issues. Most often it was sufficient to do the local testing, however on some occasions like workflow authentication we ahd  to trigger workflows quite often. ---
 
 ## Working in the cloud
 
