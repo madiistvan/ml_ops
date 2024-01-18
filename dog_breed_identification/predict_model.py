@@ -4,11 +4,12 @@ import os
 import pandas as pd
 import click
 from dog_breed_identification.models.model import Model
+from torch.nn import Module
 
 @click.command()
 @click.argument("model_params")
 @click.argument("directory")
-def predict(model_params: torch.nn.Module, directory: str, return_label: bool = True) -> None:
+def predict(model_params: Module, directory: str, return_label: bool = True) -> None:
     """Run prediction for a given model and folder of pictures with a .jpg extension.
 
     Args:
