@@ -423,7 +423,7 @@ During running our tests we used pip cache when downloading dependencies. ---
 >
 > Answer:
 
----First, we developed a separate python file for predicting based on a oretrained model. Secondly, with FastApi we created a web api that takes in an image and than predicts the dog breed. We created a docker file that when built runs the aforementioned web api. This docker docker image is built with the help of Cloud Build whenever new changes were added to dev or main branches and than with CLoud Run it is deployed and can be accessed with the following command:. ```curl -X POST https://dog-breed-identification-api-k3daan6qya-ew.a.run.app/predict -F "PATH_TO_YOUR_IMAGE"```
+---First, we developed a separate python file for predicting based on a pretrained model. Secondly, with FastApi we created a web api that takes in one or multiple images and than predicts the dog breed for each image passed as an input. We created a docker file that when built runs the aforementioned web api. This docker docker image is built with the help of Cloud Build whenever new changes were added to dev or main branches and than with CLoud Run it is deployed and can be accessed with the following command:. ```curl -X POST https://dog-breed-identification-api-k3daan6qya-ew.a.run.app/predict -F "PATH_TO_YOUR_IMAGE"```
 
 Example response of the web api: ```[{"filename":"0a01f3b0c6d250c08785716c562e2d4d.jpg","probability":0.6926616430282593,"breed_idx":81,"breed":"norwich_terrier","status":"success","message":"Cute puppy detected"}]``` ---
 
@@ -489,7 +489,7 @@ Example response of the web api: ```[{"filename":"0a01f3b0c6d250c08785716c562e2d
 >
 > Answer:
 
---- question 26 fill here ---
+--- We spent a great deal of time trying to figure out how we can connect / integrate seperate services or tools. These included accessing the buckets in the Google Storage service from our containers and workflows; figuring out how we can authenticate Weights and Biases inside a container so when we do a training with Vertex AI we can see the logs on the Web UI (this was especially painful and our current solution might not be the best); authenticating to Google services from the GitHub workflows; giving access to service workers. We also spenta lot of time figuring out the automated pipelines which included writing the workflows and docker files. Some other areas where we faced challenges were setting up Hydra properly (the way it initializes was not a hundred percent clear and this caused some issues) and we also had some issues setting up dvc in a GitHub workflow with google cloud storage. Another part that caused some troubles were understanding cloudbuilds and how they relate to Goole Cloud triggers and how to set up these to work properly. Overall, we would say that the most problematic part was authentication, giving permissions in the right places and figuring out how we can use secrets in some places. ---
 
 ### Question 27
 
