@@ -15,6 +15,7 @@ hydra.initialize(config_path="config", version_base=None)
 train_config = hydra.compose(config_name="train_config")
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+print(f"Using {device} for training...")
 dataset_path = train_config.data_path
 
 # Load model
@@ -23,7 +24,7 @@ model.to(device)
 model.train()
 
 
-def train(num_epochs, learning_rate, batch_size, model_name):
+def train(num_epochs: int, learning_rate: float, batch_size: int, model_name: str):
     # Load data
     if os.path.exists(f"{dataset_path}/train.pt"):
         train = torch.load("data/processed/train.pt")
@@ -79,11 +80,10 @@ def train(num_epochs, learning_rate, batch_size, model_name):
     print(train_config.model_bucket_name)
     model_saver = SaveModel(model, train_config.model_bucket_name)
     model_name = model_saver.save()
-    wandb.run.summary({'Model Name': model_name})
+    wandb.run.summary['Model Name'] = model_name
 
 
-def evaluate(batch_size):
-
+def evaluate(batch_size: int):
     print("Evaluating model...")
     # Load data
     if os.path.exists(f"{dataset_path}/val.pt"):
@@ -121,7 +121,7 @@ def evaluate(batch_size):
     accuracy = 100 * correct / total
 
     print(f"Accuracy (validation): {accuracy}")
-    wandb.run.summary({'Accuracy (validation)': accuracy})
+    wandb.run.summary["Accuracy (validation)"] = accuracy
 
 
 @click.command()
@@ -129,7 +129,7 @@ def evaluate(batch_size):
 @click.option('--learning_rate', default=train_config.lr, type=float, help='Set the learning_rate')
 @click.option('--batch_size', default=train_config.batch_size, type=int, help='Set the batch_size')
 @click.option('--model_name', default=train_config.name, type=str, help='Set the model file name')
-def main(num_epochs, learning_rate, batch_size, model_name):
+def main(num_epochs: int, learning_rate: float, batch_size: int, model_name: str):
     if num_epochs != train_config.epochs:
         train_config.epochs = num_epochs
 
