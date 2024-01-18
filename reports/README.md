@@ -358,7 +358,13 @@ During running our tests we used pip cache when downloading dependencies. ---
 >
 > Answer:
 
---- question 17 fill here ---
+--- We used the following services: Vertex AI, Cloud Build, Cloud function, Bucket, Container registry, IAM 
+- Vertex AI, for running our experiments
+- Cloud Build, for building our containers
+- Bucket, for storing the data, and the details and results of our experiments.
+- Container registry, for storing the built docker images.
+- IAM, Resource acces managment for our workflows.
+---
 
 ### Question 18
 
