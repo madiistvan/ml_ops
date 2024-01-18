@@ -185,3 +185,4 @@ data/processed/
 data/raw/
 api/*.pth
 api/src/*.csv
+predictions/*.txt
