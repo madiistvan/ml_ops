@@ -363,8 +363,7 @@ During running our tests we used pip cache when downloading dependencies. ---
 - Cloud Build, for building our containers
 - Bucket, for storing the data, and the details and results of our experiments.
 - Container registry, for storing the built docker images.
-- IAM, Resource acces managment for our workflows.
----
+- IAM, Resource acces managment for our workflows. ---
 
 ### Question 18
 
