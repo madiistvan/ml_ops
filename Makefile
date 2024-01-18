@@ -43,6 +43,8 @@ data:
 train:
 	python $(PROJECT_NAME)/train_model.py $(if $(EPOCHS),--num_epochs $(EPOCHS)) $(if $(BATCHSIZE),--batch_size $(BATCHSIZE)) $(if $(LR),--learning_rate $(LR)) $(if $(MODEL_NAME),--model_name $(MODEL_NAME))
 
+predict:
+	python $(PROJECT_NAME)/predict_model.py $(W) $(DIR)
 #################################################################################
 # Documentation RULES                                                           #
 #################################################################################
