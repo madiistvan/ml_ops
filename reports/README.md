@@ -506,4 +506,4 @@ Example response of the web api: ```[{"filename":"0a01f3b0c6d250c08785716c562e2d
 >
 > Answer:
 
---- Student s232971: Set up our data stroage in the cloud and dvc. Training model in the cloud with vertex ai, workflow for training, parameterizing training, Unit test for data and model covarage + workflow. Auto fromatting workflow. Direct data loading from storage bucket. Managed the git repo. ---
+--- Student s232971: Set up our data stroage in the cloud and dvc. Training model in the cloud with vertex ai, workflow for training, parameterizing training, Unit test for data and model covarage + workflow. Auto fromatting workflow. Direct data loading from storage bucket. Managed the git repo. Most of the report. ---
