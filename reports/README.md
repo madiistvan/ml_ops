@@ -116,7 +116,7 @@ end of the project.
 >
 > Answer:
 
---- s233084, s233085, s232971, s233516 ---
+--- s233084, s233085, s232971, s233516, s233107 ---
 
 ### Question 3
 > **What framework did you choose to work with and did it help you complete the project?**
@@ -168,7 +168,7 @@ make requirements
 > *experiments.*
 > Answer:
 
---- question 5 fill here ---
+--- As a structure we used the cookiecutter template in our project. The make_dataset.py is responsible for the dataset construction and the predict_model.py and train_model.py were developed along with additional utility files. We have added the a folder named tests, which contains our unit tests related to the data, the endpoints and the model. In addition, 'api' folfer has been created for the source code of the deployed model and we also have added a '.dvc' folder to hold metadata files associated with data versioning, utilizing cloud services. We have removed the notebooks folder because we did not use any Jupyter notebook.
 
 ### Question 6
 
@@ -198,7 +198,8 @@ make requirements
 >
 > Answer:
 
---- question 7 fill here ---
+In total, we have implemented three tests responsible for assessing the data, endpoints, and the model—considered the most critical components of our application. The tests turned out to be very useful, because with the help of the workflow, we always saw when the tests failed. We could ensure that tests are automatically executed whenever changes are pushed to the repository. This means that we could quickly identify and address problems, preventing flawed code from being merged into the main codebase.
+
 
 ### Question 8
 
@@ -311,7 +312,7 @@ During running our tests we used pip cache when downloading dependencies. ---
 >
 > Answer:
 
---- question 14 fill here ---
+--- We used W&B to track our experiments. We also passed our config file to W&B to be able to track our hyperparameters (batch size, learning rate, epochs). Besides that, the config file holds the names of our data buckets, so we are able to see the location of the dataset and the trained models. During training, we track the value of the loss and accuracy on the current batch. After each epoch, we also calculate the average of these values. After the training is finished, we calculate the accuracy on our validation dataset (although we probably should do this at least after each epoch to keep track of overfitting). Some predictions can be seen after the run as we uploaded some images with showing its true label and prediced label from the training set. ![predictions](figures/predictions.png) We can also compare our runs by looking at the created graphs, although the x axis is not unified: trainings with different batch sizes are not aligned because the x axis shows the number of batches. ![curves](figures/curves.png) With our current setup, the best way to compare trained models is to look at the runs tab and check the logged information. ![results](figures/results.png) Here we can see every meaningful information such as validation accuracy, learning rate, epochs and based on this we can evaluate the success of the run. ---
 
 ### Question 15
 
@@ -326,7 +327,11 @@ During running our tests we used pip cache when downloading dependencies. ---
 >
 > Answer:
 
---- We created docker files for the functionality we wanted to deploy to the cloud. In our case that means we had two docker files one for running training a new model and one for deploying rained models to the cloud. We did not run images manually as theye were built with Cloud Build and stored in Container Registry, and the training job was ran with Vertex Ai. (the commands to run can be found in the workflow) During this project we wanted everything to be automatized as possible and to use Google Cloud Functionality as much as we can [link to docker file in our repository](https://github.com/madiistvan/ml_ops/blob/report/dockerfiles/train_model.dockerfile) ---
+--- We created docker files for the functionality we wanted to deploy to the cloud. In our case that means we had two docker files one for running training a new model and one for deploying rained models to the cloud. We did not run images manually as theye were built with Cloud Build and stored in Container Registry, and the training job was ran with Vertex Ai. (the commands to run can be found in the workflow) During this project we wanted everything to be automatized as possible and to use Google Cloud Functionality as much as we can [link to docker file in our repository](https://github.com/madiistvan/ml_ops/blob/report/dockerfiles/train_model.dockerfile).In case someone wants they can also create the docker images and run the containers locally. In the case of training, the run command would look like: 
+```
+docker run --name exp1 train:latest --num_epochs 5 --batch_size 64 --lr 0.005 --model_name model1
+``` 
+--- ---
 
 ### Question 16
 
@@ -475,7 +480,7 @@ Example response of the web api: ```[{"filename":"0a01f3b0c6d250c08785716c562e2d
 >
 > Answer:
 
---- question 25 fill here ---
+--- ![img](https://github.com/madiistvan/ml_ops/assets/63722535/d4faab20-75fd-4d80-a6b9-6a9b7b65d83c) ---
 
 ### Question 26
 
