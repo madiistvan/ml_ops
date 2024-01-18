@@ -228,7 +228,7 @@ make requirements
 >
 > Answer:
 
---- We had two protected branches called dev and main (protected branch in our case mean that new changes can not be pushed on the directly). All new features were developed on feauture branches and merged to the dev branch with a pull request. During our project all pull requests required one reviewr to approve the changes and the test workflows to pass. When a new feautere was merged to dev or the dev branch was merged to the main branch various workflows were triggered to publish the new docker images to the cloud and handle thei deployement. ---
+--- We had two protected branches called dev and main (protected branch in our case mean that new changes can not be pushed on the directly). All new features were developed on feauture branches and merged to the dev branch with a pull request. During our project all pull requests required one reviewr to approve the changes and the test workflows to pass. When a new feautere was merged to dev or the dev branch was merged to the main branch various workflows were triggered to publish the new docker images to the cloud and handle their deployement. For the tracking a distribution of issues we used a canban board in the projects section. ---
 
 ### Question 10
 
