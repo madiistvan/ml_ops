@@ -407,7 +407,7 @@ During running our tests we used pip cache when downloading dependencies. ---
 >
 > Answer:
 
---- <img width="1025" alt="Screenshot 2024-01-17 at 18 56 01" src="https://github.com/madiistvan/ml_ops/assets/63722535/c1826432-daad-4bdf-bf6c-4d76f435458c"> ---
+--- ![img](https://github.com/madiistvan/ml_ops/assets/63722535/c1826432-daad-4bdf-bf6c-4d76f435458c) ---
 
 ### Question 22
 
