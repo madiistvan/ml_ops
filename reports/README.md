@@ -341,7 +341,7 @@ During running our tests we used pip cache when downloading dependencies. ---
 >
 > Answer:
 
---- question 16 fill here ---
+--- For debugging our python code we took advantage of break points and print statements. We had some troubles with worklows not working as expected. To solve these issues when it was feasible we tried to excecute the command locally to find out what goes wrong. When the commands worked fine locally or could not be run locally we wrote most thing to the output to see the cause of our issues. ---
 
 ## Working in the cloud
 
