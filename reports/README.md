@@ -379,7 +379,7 @@ During running our tests we used pip cache when downloading dependencies. ---
 >
 > Answer:
 
---- question 18 fill here ---
+--- We did not use Compute engine. We did our training using Vertex Ai, therefore this question is not applicable for our project. ---
 
 ### Question 19
 
