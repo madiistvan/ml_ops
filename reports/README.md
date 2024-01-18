@@ -294,7 +294,7 @@ During running our tests we used pip cache when downloading dependencies. ---
 >
 > Answer:
 
---- We carfully created our experiment setup to optimize for reproduciblity we used config files. To reproduce an experiment one would need to see the experiments page in wandb locate the model and weights with the config file from our model bucket. Load them and either merge them to one fo the protected branches and trigger the manual workflow or run training locally in the teminal. ---
+--- We carefully created our experiment setup to optimize for reproduciblity we used config files. To reproduce an experiment one would need to see the experiments page in wandb locate the model and weights with the config file from our model bucket. Load them and either merge them to one fo the protected branches and trigger the manual workflow or run training locally in the teminal. ---
 
 ### Question 14
 
@@ -326,7 +326,7 @@ During running our tests we used pip cache when downloading dependencies. ---
 >
 > Answer:
 
---- We created [docker](https://github.com/madiistvan/ml_ops/blob/report/dockerfiles/train_model.dockerfile) files for the functionality we wanted to deploy to the cloud. In our case that means we had two docker files one for running training a new model and one for deploying rained models to the cloud. We did not run images manually as theye were built with Cloud Build and stored in Container Artifactory, and the training job was ran with Vertex Ai. (the commands to run can be found in the workflow) ---
+--- We created [docker](https://github.com/madiistvan/ml_ops/blob/report/dockerfiles/train_model.dockerfile) files for the functionality we wanted to deploy to the cloud. In our case that means we had two docker files one for running training a new model and one for deploying rained models to the cloud. We did not run images manually as theye were built with Cloud Build and stored in Container Registry, and the training job was ran with Vertex Ai. (the commands to run can be found in the workflow) ---
 
 ### Question 16
 
