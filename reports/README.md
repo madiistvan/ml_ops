@@ -520,4 +520,6 @@ Student 233084: Code typing. Adding arguments to prediction file. Deploying the 
 
 Student s233085: Make dataset, train model and predict model. Writing at keeping track of trained models in data buckets. Monitoring system telemetry of the deployed api + SLOs. Continous integrations by github workflow.
 
+Student s233107: dd continuous machine learning workflow, Create a trigger workflow for automatically building your docker images and publish to gcp artifactory, When you have something that works somewhat, remember at some point to to some profiling and see if you can optimize your code.
+
 Student s233516: Setup version control for our data, use arguments with click(number of epochs, batch size, learning rate and the name of the model), set makefile use parameters, tried to set up monitoring endpoint in order to check how robust your model is towards data drifting---
